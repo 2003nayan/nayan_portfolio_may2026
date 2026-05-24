@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { useScrollAnimation } from "@/hooks/use-scroll-animation";
 import { OSS_CONTRIBUTIONS, OSS_STATS } from "@/data/opensource";
-import { ExternalLink, GitMerge } from "lucide-react";
+import { ExternalLink, GitMerge, GitPullRequest } from "lucide-react";
 
 function StatCard({
   value,
@@ -56,7 +56,7 @@ export default function OpenSource() {
               sub={OSS_STATS.starsRepo}
             />
             <StatCard value={OSS_STATS.totalPrs} label="Total PRs" />
-            <StatCard value={OSS_STATS.merged} label="Merged" />
+            <StatCard value={OSS_STATS.merged} label="Open PRs" />
           </div>
 
           {/* PR List */}
@@ -67,12 +67,19 @@ export default function OpenSource() {
                 className="card flex flex-col sm:flex-row sm:items-start sm:justify-between gap-4 group"
               >
                 <div className="flex items-start gap-3 flex-1 min-w-0">
-                  {/* Merged badge + date */}
+                  {/* Status badge + date */}
                   <div className="flex-shrink-0 pt-0.5 space-y-1">
-                    <span className="badge-merged">
-                      <GitMerge size={10} />
-                      Merged
-                    </span>
+                    {pr.status === "merged" ? (
+                      <span className="badge-merged">
+                        <GitMerge size={10} />
+                        Merged
+                      </span>
+                    ) : (
+                      <span className="badge-open">
+                        <GitPullRequest size={10} />
+                        Open
+                      </span>
+                    )}
                     <p className="text-[#606060] text-xs font-mono text-center">
                       {pr.dates}
                     </p>

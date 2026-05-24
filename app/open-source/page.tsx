@@ -1,12 +1,12 @@
 import Link from "next/link";
-import { ExternalLink, GitMerge } from "lucide-react";
+import { ExternalLink, GitMerge, GitPullRequest } from "lucide-react";
 import { OSS_CONTRIBUTIONS, OSS_STATS } from "@/data/opensource";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "Open Source",
   description:
-    "Real bug fixes and security improvements merged into Bruno, a 25K+ stars API testing tool.",
+    "Real bug fixes and security improvements contributed to Bruno and Supabase — 100K+ stars repos.",
 };
 
 export default function OpenSourcePage() {
@@ -19,7 +19,7 @@ export default function OpenSourcePage() {
         </h1>
         <p className="text-[#A0A0A0] text-base max-w-xl">
           Real bug fixes and security improvements — not documentation typos.
-          All merged into Bruno, a 25K+ stars API testing tool.
+          Active PRs open in Bruno and Supabase, 100K+ stars repos.
         </p>
       </div>
 
@@ -32,15 +32,15 @@ export default function OpenSourcePage() {
             sub: OSS_STATS.starsRepo,
           },
           { value: OSS_STATS.totalPrs, label: "Total PRs" },
-          { value: OSS_STATS.merged, label: "Merged" },
+          { value: OSS_STATS.merged, label: "Open PRs" },
         ].map((s) => (
           <div key={s.label} className="card text-center space-y-1">
-            <p className="text-white text-4xl font-bold">{s.value}</p>
-            <p className="text-[#606060] text-xs font-semibold tracking-widest uppercase">
+            <p className="text-white text-2xl sm:text-4xl font-bold leading-tight">{s.value}</p>
+            <p className="text-[#606060] text-[10px] sm:text-xs font-semibold tracking-wider uppercase leading-tight">
               {s.label}
             </p>
             {s.sub && (
-              <p className="text-[#606060] text-xs font-mono">{s.sub}</p>
+              <p className="text-[#606060] text-[10px] sm:text-xs font-mono">{s.sub}</p>
             )}
           </div>
         ))}
@@ -55,10 +55,17 @@ export default function OpenSourcePage() {
           >
             <div className="flex items-start gap-3 flex-1 min-w-0">
               <div className="flex-shrink-0 pt-0.5 space-y-1">
-                <span className="badge-merged">
-                  <GitMerge size={10} />
-                  Merged
-                </span>
+                {pr.status === "merged" ? (
+                  <span className="badge-merged">
+                    <GitMerge size={10} />
+                    Merged
+                  </span>
+                ) : (
+                  <span className="badge-open">
+                    <GitPullRequest size={10} />
+                    Open
+                  </span>
+                )}
                 <p className="text-[#606060] text-xs font-mono text-center">
                   {pr.dates}
                 </p>

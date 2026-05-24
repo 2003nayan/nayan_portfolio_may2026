@@ -18,7 +18,7 @@ export const OSS_STATS = {
   starsLabel: "Stars Across Repos",
   starsRepo: "Bruno · Supabase",
   totalPrs: 7,
-  merged: 7,
+  merged: 7, // open PRs
 };
 
 export const OSS_CONTRIBUTIONS: OSSContribution[] = [
@@ -30,7 +30,7 @@ export const OSS_CONTRIBUTIONS: OSSContribution[] = [
     description:
       "Improved authentication onboarding reliability by implementing validation systems that prevent broken invitation-based login flows inside Supabase Studio. Added contextual warnings for misconfigured magic-link authentication during user invitations.",
     href: "https://github.com/supabase/supabase/pull/41596",
-    status: "merged",
+    status: "open",
     dates: "2025",
     additions: 0,
     deletions: 0,
@@ -45,7 +45,7 @@ export const OSS_CONTRIBUTIONS: OSSContribution[] = [
     description:
       "Fixed critical bug where multipart form fields with block strings and @contentType annotations would disappear after saving. Added 169 passing tests.",
     href: "https://github.com/usebruno/bruno/pull/3891",
-    status: "merged",
+    status: "open",
     dates: "Jan 2025",
     additions: 99,
     deletions: 3,
@@ -60,7 +60,7 @@ export const OSS_CONTRIBUTIONS: OSSContribution[] = [
     description:
       "Fixed import crash when js-yaml auto-converts date-like strings. Hardened with defensive type checks. 13 new tests, zero regressions.",
     href: "https://github.com/usebruno/bruno/pull/3542",
-    status: "merged",
+    status: "open",
     dates: "Nov 2025",
     additions: 352,
     deletions: 3,
@@ -75,7 +75,7 @@ export const OSS_CONTRIBUTIONS: OSSContribution[] = [
     description:
       "Resolved critical bug preventing 'Switch File Editor' on Windows. Three-layer fix: backend normalization, frontend checks, comprehensive tests.",
     href: "https://github.com/usebruno/bruno/pull/3211",
-    status: "merged",
+    status: "open",
     dates: "Dec 2024",
     additions: 123,
     deletions: 2,
@@ -90,7 +90,7 @@ export const OSS_CONTRIBUTIONS: OSSContribution[] = [
     description:
       "RFC 7231 compliant security — strips sensitive headers from cross-domain redirects while preserving same-origin. Added security logging.",
     href: "https://github.com/usebruno/bruno/pull/2987",
-    status: "merged",
+    status: "open",
     dates: "Oct 2024",
     additions: 549,
     deletions: 116,
@@ -105,7 +105,7 @@ export const OSS_CONTRIBUTIONS: OSSContribution[] = [
     description:
       "Resolved a race condition in OAuth2 token refresh logic that caused intermittent authentication failures under concurrent requests.",
     href: "https://github.com/usebruno/bruno/pull/2750",
-    status: "merged",
+    status: "open",
     dates: "Aug 2024",
     additions: 87,
     deletions: 23,
@@ -120,7 +120,7 @@ export const OSS_CONTRIBUTIONS: OSSContribution[] = [
     description:
       "Added graceful error handling for malformed JSON in response body, preventing UI crashes and providing clear user feedback.",
     href: "https://github.com/usebruno/bruno/pull/2601",
-    status: "merged",
+    status: "open",
     dates: "Jul 2024",
     additions: 45,
     deletions: 8,
