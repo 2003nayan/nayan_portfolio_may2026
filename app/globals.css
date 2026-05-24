@@ -1,0 +1,250 @@
+@import "tailwindcss";
+@plugin "@tailwindcss/typography";
+
+@theme {
+  --color-bg: #0a0a0a;
+  --color-surface: #141414;
+  --color-surface-hover: #1c1c1c;
+  --color-border: #2a2a2a;
+  --color-border-hover: #3a3a3a;
+  --color-text-primary: #ffffff;
+  --color-text-secondary: #a0a0a0;
+  --color-text-muted: #606060;
+  --color-accent: #ff6b35;
+  --color-accent-hover: #ff8550;
+
+  --font-sans: 'Cabinet Grotesk', system-ui, sans-serif;
+  --font-mono: 'Cabinet Grotesk', monospace;
+}
+
+@layer base {
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    background-color: #0a0a0a;
+    color: #ffffff;
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    line-height: 1.6;
+  }
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 4px;
+}
+::-webkit-scrollbar-track {
+  background: #0a0a0a;
+}
+::-webkit-scrollbar-thumb {
+  background: #2a2a2a;
+  border-radius: 2px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #ff6b35;
+}
+
+/* Selection */
+::selection {
+  background: rgba(255, 107, 53, 0.25);
+  color: #ffffff;
+}
+
+/* Fade-up animation for scroll reveal */
+.animate-fade-up {
+  animation: fade-up 0.6s ease-out forwards;
+}
+
+.fade-up-hidden {
+  opacity: 0;
+  transform: translateY(24px);
+}
+
+.fade-up-visible {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+/* Marquee container */
+.marquee-wrapper {
+  overflow: hidden;
+  width: 100%;
+  position: relative;
+}
+
+.marquee-wrapper::before,
+.marquee-wrapper::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 80px;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.marquee-wrapper::before {
+  left: 0;
+  background: linear-gradient(to right, #0a0a0a, transparent);
+}
+
+.marquee-wrapper::after {
+  right: 0;
+  background: linear-gradient(to left, #0a0a0a, transparent);
+}
+
+.marquee-track {
+  display: flex;
+  gap: 12px;
+  width: max-content;
+  animation: marquee 30s linear infinite;
+}
+
+.marquee-track-reverse {
+  display: flex;
+  gap: 12px;
+  width: max-content;
+  animation: marquee 30s linear infinite reverse;
+}
+
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+/* Badge pill styles */
+.skill-pill {
+  display: inline-flex;
+  align-items: center;
+  padding: 6px 14px;
+  border: 1px solid #2a2a2a;
+  border-radius: 9999px;
+  background-color: #141414;
+  color: #a0a0a0;
+  font-size: 13px;
+  white-space: nowrap;
+  transition: border-color 0.2s, color 0.2s;
+}
+
+.skill-pill:hover {
+  border-color: #ff6b35;
+  color: #ffffff;
+}
+
+/* Timeline connector */
+.timeline-line {
+  position: absolute;
+  left: -1px;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: #2a2a2a;
+}
+
+.timeline-line-active {
+  background: linear-gradient(to bottom, #ff6b35, #ff8550);
+}
+
+/* Orange label */
+.section-label {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #ff6b35;
+}
+
+/* Card base */
+.card {
+  background-color: #141414;
+  border: 1px solid #2a2a2a;
+  border-radius: 12px;
+  padding: 24px;
+  transition: border-color 0.2s ease;
+}
+
+.card:hover {
+  border-color: #3a3a3a;
+}
+
+/* Merged badge */
+.badge-merged {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 3px 10px;
+  border-radius: 9999px;
+  background: rgba(34, 197, 94, 0.12);
+  color: #4ade80;
+  font-size: 11px;
+  font-weight: 600;
+  border: 1px solid rgba(34, 197, 94, 0.2);
+}
+
+/* Focus ring */
+:focus-visible {
+  outline: 2px solid #ff6b35;
+  outline-offset: 2px;
+}
+
+/* Typography / prose overrides */
+.prose {
+  color: #a0a0a0;
+  max-width: none;
+}
+.prose h1,
+.prose h2,
+.prose h3,
+.prose h4 {
+  color: #ffffff;
+}
+.prose strong {
+  color: #ffffff;
+}
+.prose a {
+  color: #ff6b35;
+}
+.prose a:hover {
+  color: #ff8550;
+}
+.prose code {
+  color: #ff6b35;
+  background-color: rgba(255, 107, 53, 0.1);
+  border-radius: 4px;
+  padding: 2px 6px;
+}
+.prose code::before,
+.prose code::after {
+  content: "";
+}
+.prose pre {
+  background-color: #141414;
+  border: 1px solid #2a2a2a;
+}
+.prose blockquote {
+  color: #a0a0a0;
+  border-left-color: #ff6b35;
+}
+.prose hr {
+  border-color: #2a2a2a;
+}
+.prose ul > li::marker,
+.prose ol > li::marker {
+  color: #ff6b35;
+}
