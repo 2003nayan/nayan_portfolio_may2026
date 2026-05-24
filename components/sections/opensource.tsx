@@ -16,11 +16,11 @@ function StatCard({
 }) {
   return (
     <div className="card text-center space-y-1">
-      <p className="text-white text-4xl font-bold">{value}</p>
-      <p className="text-[#606060] text-xs font-semibold tracking-widest uppercase">
+      <p className="text-white text-2xl sm:text-4xl font-bold leading-tight">{value}</p>
+      <p className="text-[#606060] text-[10px] sm:text-xs font-semibold tracking-wider uppercase leading-tight">
         {label}
       </p>
-      {sub && <p className="text-[#606060] text-xs font-mono">{sub}</p>}
+      {sub && <p className="text-[#606060] text-[10px] sm:text-xs font-mono">{sub}</p>}
     </div>
   );
 }
