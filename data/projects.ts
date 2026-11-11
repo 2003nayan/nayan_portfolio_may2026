@@ -9,6 +9,9 @@ export interface Project {
   technologies: string[];
   links: { type: "Source" | "Live Demo"; href: string }[];
   image: string;
+  // Client work: slug of the /work case study, and the word shown on the image plate
+  caseStudy?: string;
+  plate?: string;
 }
 
 export const PROJECTS: Project[] = [
@@ -19,7 +22,7 @@ export const PROJECTS: Project[] = [
     featured: true,
     active: true,
     description:
-      "A SaaS platform empowering YouTube creators with AI-powered tools — video analysis, title generation, and content optimization. Boosted creator CTR through intelligent suggestions.",
+      "A SaaS platform empowering YouTube creators with AI-powered tools — video analysis, title generation, and content optimization.",
     highlight: "AI-powered SaaS with integrated payments and real-time video analysis",
     technologies: ["Next.js", "Clerk", "Convex DB", "Stripe", "YouTube API", "Claude 3.7"],
     links: [
@@ -79,42 +82,63 @@ export const PROJECTS: Project[] = [
 
 export const CLIENT_PROJECTS: Project[] = [
   {
-    title: "Fortune 500 FMCG — Philippines Monitoring Platform",
+    title: "Fortune Global 500 FMCG — Shopfloor Operations Platform",
     href: "#",
-    dates: "Apr 2026 – Present",
+    dates: "Sept 2025 – Dec 2025, Aug 2026 – Present",
     featured: true,
     active: true,
     description:
-      "Real-time AI-assisted industrial monitoring platform deployed onsite for a Fortune 500 FMCG client across 5 high-speed VFFS packaging machines. Live telemetry, 8-camera inspection streams, downtime analytics, and operational health dashboards.",
-    highlight: "International onsite deployment — current active project",
-    technologies: ["React", "TypeScript", "FastAPI", "PostgreSQL", "WebSockets"],
+      "Shopfloor operations platform for a global FMCG plant in Haridwar, scaled from 10 to 36 high-speed packaging machines across 6 loops. Operators get live productivity, quality and breakdown data with guided actions, and can change machine parameters from the UI.",
+    highlight: "Only full-stack developer — scaled from 10 to 36 machines",
+    technologies: ["React", "TypeScript", "FastAPI", "PostgreSQL", "TimescaleDB", "PLC Integration"],
     links: [],
     image: "",
+    caseStudy: "haridwar",
+    plate: "Haridwar",
   },
   {
-    title: "Global Spirits — AI Digital Twin Platform",
+    title: "Fortune Global 500 FMCG — Soap Line Digital Twin & TwinSight",
+    href: "#",
+    dates: "Jun 2026 – Present",
+    featured: true,
+    active: true,
+    description:
+      "Two production apps for a global FMCG soap line in Khamgaon: a live 3D digital twin showing operators what every machine is doing, and TwinSight, a factory monitoring portal for engineers. Includes real-time penetration value (PV) estimation.",
+    highlight: "Live 3D digital twin, moved from Azure and AWS to an on-premise plant server",
+    technologies: ["React", "TypeScript", "Three.js", "React Three Fiber", "FastAPI", "PostgreSQL"],
+    links: [],
+    image: "",
+    caseStudy: "khamgaon",
+    plate: "Khamgaon",
+  },
+  {
+    title: "Fortune Global 500 FMCG — Real-Time Quality System",
+    href: "#",
+    dates: "Apr 2026 – Jun 2026",
+    featured: true,
+    active: false,
+    description:
+      "Real-time quality monitoring system deployed onsite in Cavite across 5 high-speed VFFS packaging machines at 180+ units/min. PLC telemetry over EtherNet/IP, 8-camera inspection streams, downtime tracking and system health dashboards.",
+    highlight: "International onsite delivery",
+    technologies: ["React", "TypeScript", "FastAPI", "PostgreSQL", "EtherNet/IP"],
+    links: [],
+    image: "",
+    caseStudy: "cavite",
+    plate: "Cavite",
+  },
+  {
+    title: "Multinational Spirits Company — Distillery Digital Twin",
     href: "#",
     dates: "Jan 2026 – Mar 2026",
     featured: true,
     active: false,
     description:
-      "Full-stack AI digital twin for a global spirits manufacturer — process simulation, Physics-Informed Neural Network (PINN) quality prediction, phase-aware telemetry dashboards, and multi-version process comparison.",
-    highlight: "AI-powered process simulation with Physics-Informed Neural Networks",
-    technologies: ["React", "FastAPI", "PostgreSQL", "Python", "AI/ML"],
+      "Desktop digital twin application for a global spirits maker's distillery — engineers simulate and compare recipe changes before production, with Physics-Informed Neural Network (PINN) quality prediction and phase-aware analytics.",
+    highlight: "Process simulation with Physics-Informed Neural Networks",
+    technologies: ["Electron", "React", "FastAPI", "Python", "PostgreSQL", "PINN Models"],
     links: [],
     image: "",
-  },
-  {
-    title: "Fortune 500 FMCG — Haridwar Production App",
-    href: "#",
-    dates: "Sept 2025 – Dec 2025",
-    featured: true,
-    active: false,
-    description:
-      "Industrial monitoring and control system deployed onsite at a Fortune 500 FMCG client in Haridwar. Built complete full-stack solution as sole technical owner — sole fresher selected for the deployment.",
-    highlight: "Sole technical owner — only fresher selected for this critical deployment",
-    technologies: ["React", "Python", "Flask", "WebSockets", "ZeroMQ", "CI/CD"],
-    links: [],
-    image: "",
+    caseStudy: "distillery",
+    plate: "Nashik",
   },
 ];

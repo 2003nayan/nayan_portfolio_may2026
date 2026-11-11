@@ -3,104 +3,144 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Menu, X } from "lucide-react";
+import { ArrowUpRight, Menu, X } from "lucide-react";
+import ThemeToggle from "@/components/ui/theme-toggle";
+import { SITE } from "@/data/site";
 
 const NAV_LINKS = [
-  { label: "Journey", href: "#journey" },
-  { label: "Projects", href: "#projects" },
-  { label: "Open Source", href: "#opensource" },
-  { label: "Blog", href: "#writing" },
+  { label: "Journey", href: "#journey", page: null },
+  { label: "Work", href: "#projects", page: "/projects" },
+  { label: "Open Source", href: "#opensource", page: "/open-source" },
+  { label: "Writing", href: "#writing", page: "/blog" },
 ];
 
 export default function Navbar() {
   const pathname = usePathname();
   const isHome = pathname === "/";
-  const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [activeSection, setActiveSection] = useState<string | null>(null);
 
   // On sub-pages, prefix hash links with "/" so they navigate home first
   const resolveHref = (href: string) =>
     href.startsWith("#") && !isHome ? `/${href}` : href;
 
+  // Highlight the section currently crossing the upper third of the viewport.
+  // Every section is observed (not just linked ones) so scrolling back to the
+  // hero or about clears the highlight.
   useEffect(() => {
-    const handleScroll = () => setScrolled(window.scrollY > 20);
-    window.addEventListener("scroll", handleScroll, { passive: true });
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+    if (!isHome) return;
+    const sections = document.querySelectorAll<HTMLElement>("main section[id]");
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        for (const entry of entries) {
+          if (entry.isIntersecting) setActiveSection(`#${entry.target.id}`);
+        }
+      },
+      { rootMargin: "-30% 0px -65% 0px" },
+    );
+    sections.forEach((el) => observer.observe(el));
+    return () => observer.disconnect();
+  }, [isHome]);
+
+  const isActive = (link: (typeof NAV_LINKS)[number]) =>
+    isHome
+      ? activeSection === link.href
+      : link.page !== null && pathname.startsWith(link.page);
 
   return (
-    <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        scrolled
-          ? "bg-[#0A0A0A]/90 backdrop-blur-md border-b border-[#2A2A2A]"
-          : "bg-transparent"
-      }`}
-    >
-      <div className="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
-        {/* Logo */}
-        <Link
-          href="/"
-          className="text-white font-bold text-lg tracking-tight hover:text-[#FF6B35] transition-colors"
-        >
-          NK.
-        </Link>
-
-        {/* Desktop Nav */}
-        <nav className="hidden md:flex items-center gap-8">
-          {NAV_LINKS.map((link) => (
-            <Link
-              key={link.href}
-              href={resolveHref(link.href)}
-              className="text-[#A0A0A0] hover:text-white text-sm transition-colors"
-            >
-              {link.label}
-            </Link>
-          ))}
-        </nav>
-
-        {/* CTA Button */}
-        <div className="hidden md:flex items-center gap-4">
+    <header className="sticky top-0 z-50 w-full border-b border-line bg-bg/90 backdrop-blur-md">
+      <div className="flex h-12 items-stretch justify-between">
+        <div className="flex min-w-0 items-stretch">
           <Link
-            href={resolveHref("#contact")}
-            className="px-6 py-2 bg-[#FF6B35] hover:bg-[#FF8550] text-white text-sm font-semibold rounded-xl transition-colors"
+            href="/"
+            className="flex items-center border-r border-line px-5 font-display text-lg font-semibold tracking-tight text-ink-strong transition-opacity hover:opacity-70 sm:px-6"
+            aria-label={`${SITE.name}, home`}
           >
-            Let&apos;s Talk
+            NK<span className="text-accent">.</span>
           </Link>
-        </div>
 
-        {/* Mobile Toggle */}
-        <button
-          className="md:hidden text-[#A0A0A0] hover:text-white"
-          onClick={() => setMobileOpen(!mobileOpen)}
-          aria-label="Toggle menu"
-        >
-          {mobileOpen ? <X size={20} /> : <Menu size={20} />}
-        </button>
-      </div>
-
-      {/* Mobile Dropdown */}
-      {mobileOpen && (
-        <div className="md:hidden bg-[#0A0A0A] border-b border-[#2A2A2A] px-6 pb-6 pt-2">
-          <nav className="flex flex-col gap-4">
-            {NAV_LINKS.map((link) => (
+          <nav className="hidden items-stretch px-2 lg:flex" aria-label="Primary">
+            {NAV_LINKS.map((link, i) => (
               <Link
                 key={link.href}
                 href={resolveHref(link.href)}
-                className="text-[#A0A0A0] hover:text-white text-sm transition-colors"
-                onClick={() => setMobileOpen(false)}
+                aria-current={isActive(link) ? "location" : undefined}
+                className="group hud-label flex items-center px-1.5 whitespace-nowrap"
               >
-                {link.label}
+                <span
+                  className={`invert-block flex items-center gap-1.5 px-1.5 py-0.5 group-hover:bg-invert-bg group-hover:text-invert-fg ${
+                    isActive(link) ? "bg-invert-bg text-invert-fg" : "text-muted"
+                  }`}
+                >
+                  <span className="opacity-50">0{i + 1}</span>
+                  {link.label}
+                </span>
               </Link>
             ))}
-            <Link
-              href={resolveHref("#contact")}
-              className="mt-2 px-4 py-2 bg-[#FF6B35] hover:bg-[#FF8550] text-white text-sm font-semibold rounded-full transition-colors text-center"
-              onClick={() => setMobileOpen(false)}
-            >
-              Let&apos;s Talk
-            </Link>
           </nav>
         </div>
+
+        <div className="flex shrink-0 items-stretch">
+          <Link
+            href={SITE.resume}
+            target="_blank"
+            className="hud-label hidden items-center gap-1.5 border-l border-line px-5 text-muted transition-colors hover:text-ink md:flex"
+          >
+            Resume
+            <ArrowUpRight size={12} />
+          </Link>
+          <ThemeToggle className="w-12 border-l border-line" />
+          <Link
+            href={resolveHref("#contact")}
+            className="invert-block hud-label hidden items-center gap-2 bg-invert-bg px-5 text-invert-fg hover:bg-accent hover:text-white sm:flex"
+          >
+            Let&apos;s talk
+          </Link>
+          <button
+            type="button"
+            className="invert-block flex w-12 items-center justify-center border-l border-line text-muted hover:bg-invert-bg hover:text-invert-fg lg:hidden"
+            onClick={() => setMobileOpen(!mobileOpen)}
+            aria-label={mobileOpen ? "Close menu" : "Open menu"}
+            aria-expanded={mobileOpen}
+            aria-controls="mobile-menu"
+          >
+            {mobileOpen ? <X size={17} /> : <Menu size={17} />}
+          </button>
+        </div>
+      </div>
+
+      {/* Mobile panel */}
+      {mobileOpen && (
+        <nav
+          id="mobile-menu"
+          className="border-t border-line bg-bg lg:hidden"
+          aria-label="Mobile"
+        >
+          {[...NAV_LINKS, { label: "Contact", href: "#contact", page: null }].map(
+            (link, i) => (
+              <Link
+                key={link.href}
+                href={resolveHref(link.href)}
+                onClick={() => setMobileOpen(false)}
+                className="invert-block flex items-baseline gap-4 border-b border-line px-5 py-4 hover:bg-invert-bg hover:text-invert-fg"
+              >
+                <span className="hud-label opacity-50">0{i + 1}</span>
+                <span className="font-display text-2xl font-medium tracking-tight">
+                  {link.label}
+                </span>
+              </Link>
+            ),
+          )}
+          <Link
+            href={SITE.resume}
+            target="_blank"
+            onClick={() => setMobileOpen(false)}
+            className="hud-label flex items-center gap-1.5 px-5 py-4 text-muted"
+          >
+            Download resume <ArrowUpRight size={12} />
+          </Link>
+        </nav>
       )}
     </header>
   );

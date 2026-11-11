@@ -1,134 +1,104 @@
-"use client";
+import Reveal from "@/components/ui/reveal";
+import StatValue from "@/components/ui/stat-value";
+import Section, { SectionHeader } from "@/components/ui/section";
+import { SITE } from "@/data/site";
 
-import { useScrollAnimation } from "@/hooks/use-scroll-animation";
-import { Terminal, Rocket, Code2, Coffee } from "lucide-react";
+const HIGHLIGHTS = [
+  {
+    value: "10 → 36",
+    label: "Machines scaled",
+    detail: "Only full-stack developer on a global FMCG shopfloor platform.",
+  },
+  {
+    value: "4",
+    label: "Client platforms",
+    detail: "For global FMCG and spirits clients, across India and the Philippines.",
+  },
+  {
+    value: "2h → 15m",
+    label: "Deploy time",
+    detail: "Cut through an in-house CI/CD pipeline built from scratch.",
+  },
+];
+
+const STACK = [
+  { label: "Frontend", detail: "React, Next.js, TypeScript, Tailwind" },
+  { label: "Backend", detail: "Python, FastAPI, Flask, Node.js" },
+  { label: "Data", detail: "PostgreSQL, MongoDB, Redis" },
+  { label: "DevOps", detail: "Docker, CI/CD, Nginx, Linux" },
+];
 
 export default function About() {
-  const { ref, isVisible } = useScrollAnimation();
+  const [lead, ...rest] = SITE.bio.split("\n\n");
 
   return (
-    <section id="about" className="py-24">
-      <div className="max-w-7xl mx-auto px-6">
-        <div
-          ref={ref}
-          className={`transition-all duration-700 ${
-            isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
-          }`}
-        >
-          {/* Label */}
-          <p className="section-label mb-3">About</p>
-          <h2 className="text-4xl sm:text-5xl font-bold tracking-tight mb-12">
-            A little context
-          </h2>
+    <Section id="about">
+        <SectionHeader
+          index="01"
+          label="About"
+          title={
+            <>
+              A little <span className="serif-accent">context</span>.
+            </>
+          }
+        />
 
-          {/* Bento Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
-            {/* Short Bio — spans 1 full row on md */}
-            <div className="card md:col-span-1 space-y-3">
-              <div className="flex items-center gap-2 text-[#A0A0A0] text-xs font-semibold tracking-widest uppercase">
-                <Terminal size={13} className="text-[#FF6B35]" />
-                The Short Version
-              </div>
-              <p className="text-white text-md leading-relaxed">
-                I&apos;m a Full Stack Engineer at AI4M Technology, Pune.
-                Started as the only fresher deployed to a Fortune 500 client
-                site — then became the solo technical owner. Since then: three
-                client deployments across India and the Philippines. React,
-                FastAPI, WebSockets, PostgreSQL, CI/CD — 24 months of
-                non-stop execution.
+        <Reveal stagger className="grid gap-12 md:grid-cols-12">
+          <div className="space-y-5 text-base leading-relaxed md:col-span-7 md:text-lg">
+            <p className="text-ink">{lead}</p>
+            {rest.map((paragraph) => (
+              <p key={paragraph} className="text-muted">
+                {paragraph}
               </p>
-            </div>
-
-            {/* Fortune 500 */}
-            <div className="card flex flex-col justify-between space-y-4">
-              <Rocket size={20} className="text-[#FF6B35]" />
-              <div>
-                <p className="text-white text-4xl font-bold">Fortune 500</p>
-                <p className="text-[#606060] text-xs font-semibold tracking-widest uppercase mt-1">
-                  Client Deployment
-                </p>
-                <p className="text-[#A0A0A0] text-sm mt-3">
-                  3 client deployments — including international onsite
-                </p>
-              </div>
-            </div>
-
-            {/* 7+ Projects */}
-            <div className="card flex flex-col justify-between space-y-4">
-              <Code2 size={20} className="text-[#FF6B35]" />
-              <div>
-                <p className="text-white text-4xl font-bold">7+</p>
-                <p className="text-[#606060] text-xs font-semibold tracking-widest uppercase mt-1">
-                  B2B Solutions Shipped
-                </p>
-                <p className="text-[#A0A0A0] text-sm mt-3">
-                  Next.js, PostgreSQL, authentication systems
-                </p>
-              </div>
-            </div>
-
-            {/* Day to Day — Stack breakdown */}
-            <div className="card space-y-4">
-              <div className="flex items-center gap-2 text-[#A0A0A0] text-xs font-semibold tracking-widest uppercase">
-                <Code2 size={13} className="text-[#FF6B35]" />
-                Day to Day
-              </div>
-              <div className="grid grid-cols-2 gap-2">
-                {[
-                  { label: "Frontend", detail: "React, Next.js, Tailwind" },
-                  { label: "Backend", detail: "Python, Flask, Node.js" },
-                  { label: "Data", detail: "PostgreSQL, MongoDB, Redis" },
-                  { label: "DevOps", detail: "Docker, CI/CD, Nginx" },
-                ].map((item) => (
-                  <div key={item.label} className="bg-[#1C1C1C] rounded-lg p-3">
-                    <p className="text-white text-sm font-semibold">
-                      {item.label}
-                    </p>
-                    <p className="text-[#606060] text-xs mt-0.5">
-                      {item.detail}
-                    </p>
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            {/* 6 PRs */}
-            <div className="card flex flex-col justify-between space-y-4">
-              <svg
-                className="text-[#FF6B35] w-5 h-5"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth={2}
-              >
-                <circle cx="18" cy="18" r="3" />
-                <circle cx="6" cy="6" r="3" />
-                <path d="M13 6h3a2 2 0 0 1 2 2v7" />
-                <path d="M6 9v12" />
-              </svg>
-              <div>
-                <p className="text-white text-4xl font-bold">6 PRs</p>
-                <p className="text-[#606060] text-xs font-semibold tracking-widest uppercase mt-1">
-                  Merged to Bruno
-                </p>
-                <p className="text-[#A0A0A0] text-sm mt-3">
-                  25K+ stars repo — real bug fixes &amp; security
-                </p>
-              </div>
-            </div>
-
-            {/* Fun / caffeine */}
-            <div className="card flex flex-col justify-between space-y-4 bg-[#1A1008] border-[#3A2A1A]">
-              <Coffee size={20} className="text-[#FF6B35]" />
-              <p className="text-[#A0A0A0] text-sm leading-relaxed">
-                Fueled by caffeine and the satisfaction of watching green CI
-                builds. When I&apos;m not shipping code, I&apos;m probably
-                reading about system design.
-              </p>
-            </div>
+            ))}
           </div>
-        </div>
-      </div>
-    </section>
+          <figure className="border-l border-accent pl-6 md:col-span-5">
+            <figcaption className="hud-label text-faint">Origin</figcaption>
+            <blockquote className="mt-4 font-serif text-2xl leading-snug text-ink md:text-[1.75rem]">
+              “{SITE.careerStart}”
+            </blockquote>
+          </figure>
+        </Reveal>
+
+        {/* Highlights: shared-edge grid */}
+        <Reveal
+          as="dl"
+          stagger
+          className="mt-16 grid border-t border-l border-line sm:grid-cols-3 md:mt-20"
+        >
+          {HIGHLIGHTS.map((item) => (
+            <div
+              key={item.label}
+              className="flex flex-col-reverse justify-end border-r border-b border-line p-6 md:p-8"
+            >
+              <p className="mt-3 text-sm text-muted">{item.detail}</p>
+              <dt className="hud-label mt-2 text-faint">{item.label}</dt>
+              <dd className="font-display text-3xl font-medium tracking-tight text-ink-strong md:text-4xl">
+                <StatValue value={item.value} />
+              </dd>
+            </div>
+          ))}
+        </Reveal>
+
+        {/* Day-to-day stack */}
+        <Reveal stagger className="grid border-l border-line sm:grid-cols-2 lg:grid-cols-4">
+          {STACK.map((item, i) => (
+            <div
+              key={item.label}
+              className="invert-block group border-r border-b border-line p-6 hover:bg-invert-bg hover:text-invert-fg md:p-8"
+            >
+              <p className="hud-label text-faint group-hover:text-invert-fg/60">
+                {String.fromCharCode(65 + i)} / Day to day
+              </p>
+              <p className="mt-6 font-display text-2xl font-medium tracking-tight">
+                {item.label}
+              </p>
+              <p className="mt-1 font-mono text-xs text-muted group-hover:text-invert-fg/70">
+                {item.detail}
+              </p>
+            </div>
+          ))}
+        </Reveal>
+    </Section>
   );
 }

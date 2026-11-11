@@ -1,74 +1,66 @@
 import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
-import { formatDate } from "@/lib/blog";
+import Reveal from "@/components/ui/reveal";
+import Section, { SectionHeader } from "@/components/ui/section";
+import { formatDate, type BlogPost } from "@/lib/blog";
 
-// This needs to be a client component for scroll animation wrapper
-// But data fetching happens on server — we'll pass posts as prop
+type Post = Pick<BlogPost, "slug" | "metadata">;
 
-interface Post {
-  slug: string;
-  metadata: {
-    title: string;
-    summary: string;
-    publishedAt: string;
-    readTime: string;
-    featured: boolean;
-  };
+export const WRITING_INTRO =
+  "Thoughts on career growth, technical deep-dives, and lessons from the field.";
+
+export function PostList({ posts }: { posts: Post[] }) {
+  return (
+    <ul className="border-t border-line">
+      {posts.map((post) => (
+        <li key={post.slug} className="border-b border-line">
+          <Link
+            href={`/blog/${post.slug}`}
+            className="group grid gap-x-8 gap-y-2 py-7 transition-colors hover:bg-bg-raised md:grid-cols-12 md:py-9"
+          >
+            <p className="hud-label text-faint md:col-span-3 md:pt-1.5">
+              {formatDate(post.metadata.publishedAt)}
+            </p>
+            <div className="md:col-span-7">
+              <h3 className="font-display text-xl font-medium tracking-tight text-ink-strong transition-colors group-hover:text-accent-ink md:text-2xl">
+                {post.metadata.title}
+              </h3>
+              <p className="mt-2 line-clamp-2 text-sm leading-relaxed text-muted">
+                {post.metadata.summary}
+              </p>
+            </div>
+            <div className="hud-label flex items-start gap-3 text-faint md:col-span-2 md:justify-end md:pt-1.5">
+              {post.metadata.readTime}
+              <ArrowUpRight
+                size={14}
+                aria-hidden="true"
+                className="transition group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-ink"
+              />
+            </div>
+          </Link>
+        </li>
+      ))}
+    </ul>
+  );
 }
 
 export function WritingSection({ posts }: { posts: Post[] }) {
   return (
-    <section id="writing" className="py-24">
-      <div className="max-w-7xl mx-auto px-6">
-        <p className="section-label mb-3">Writing</p>
-        <h2 className="text-4xl sm:text-5xl font-bold tracking-tight mb-3">
-          Recent Articles
-        </h2>
-        <p className="text-[#A0A0A0] mb-10 text-base">
-          Thoughts on career growth, technical deep-dives, and lessons from the
-          field.
-        </p>
-
-        <div className="divide-y divide-[#2A2A2A]">
-          {posts.slice(0, 3).map((post) => (
-            <Link
-              key={post.slug}
-              href={`/blog/${post.slug}`}
-              className="flex items-start justify-between gap-4 py-6 group"
-            >
-              <div className="space-y-1.5 min-w-0">
-                <h3 className="text-white font-semibold group-hover:text-[#FF6B35] transition-colors leading-snug">
-                  {post.metadata.title}
-                </h3>
-                <p className="text-[#A0A0A0] text-sm leading-relaxed line-clamp-2">
-                  {post.metadata.summary}
-                </p>
-                <div className="flex items-center gap-2 text-[#606060] text-xs">
-                  <span>{formatDate(post.metadata.publishedAt)}</span>
-                  <span>·</span>
-                  <span>{post.metadata.readTime}</span>
-                </div>
-              </div>
-              <ArrowUpRight
-                size={18}
-                className="text-[#606060] group-hover:text-[#FF6B35] transition-colors flex-shrink-0 mt-1"
-              />
-            </Link>
-          ))}
-        </div>
-
-        {posts.length > 3 && (
-          <div className="mt-6 text-center">
-            <Link
-              href="/blog"
-              className="inline-flex items-center gap-2 text-[#A0A0A0] hover:text-white text-sm transition-colors"
-            >
-              View all articles
-              <ArrowUpRight size={13} />
-            </Link>
-          </div>
-        )}
-      </div>
-    </section>
+    <Section id="writing">
+      <SectionHeader
+        index="06"
+        label="Writing"
+        title={
+          <>
+            Notes from the <span className="serif-accent">field</span>.
+          </>
+        }
+        intro={WRITING_INTRO}
+        action={{ href: "/blog", label: "All articles" }}
+      />
+      <Reveal>
+        <PostList posts={posts.slice(0, 3)} />
+      </Reveal>
+    </Section>
   );
 }

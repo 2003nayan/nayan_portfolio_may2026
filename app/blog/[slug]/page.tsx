@@ -31,45 +31,47 @@ export default async function BlogPostPage({ params }: Props) {
   if (!post) notFound();
 
   return (
-    <div className="max-w-3xl mx-auto px-6 pt-28 pb-20">
-      {/* Back */}
-      <Link
-        href="/blog"
-        className="inline-flex items-center gap-2 text-[#606060] hover:text-white text-sm transition-colors mb-10"
-      >
-        <ArrowLeft size={14} />
-        All articles
-      </Link>
-
-      {/* Header */}
-      <header className="mb-10 space-y-4">
-        <h1 className="text-3xl sm:text-4xl font-bold tracking-tight leading-tight">
-          {post.metadata.title}
-        </h1>
-        <p className="text-[#A0A0A0] text-base">{post.metadata.summary}</p>
-        <div className="flex items-center gap-3 text-[#606060] text-sm">
-          <span>{formatDate(post.metadata.publishedAt)}</span>
-          <span>·</span>
-          <span>{post.metadata.readTime}</span>
+    <article>
+      <header className="border-b border-line">
+        <div className="mx-auto max-w-3xl px-5 pt-16 pb-12 sm:px-8 md:pt-24">
+          <p className="hud-label text-muted">
+            <Link href="/" className="transition-colors hover:text-ink">
+              Index
+            </Link>
+            <span className="mx-2 text-faint">/</span>
+            <Link href="/blog" className="transition-colors hover:text-ink">
+              Writing
+            </Link>
+          </p>
+          <h1 className="display-2 mt-8">{post.metadata.title}</h1>
+          <p className="mt-6 text-lg text-muted">{post.metadata.summary}</p>
+          <div className="hud-label mt-10 flex flex-wrap gap-x-6 gap-y-2 border-t border-line pt-4 text-faint">
+            <span>{formatDate(post.metadata.publishedAt)}</span>
+            <span>{post.metadata.readTime}</span>
+            {post.metadata.tags?.map((tag) => (
+              <span key={tag}>#{tag}</span>
+            ))}
+          </div>
         </div>
-        <hr className="border-[#2A2A2A]" />
       </header>
 
-      {/* Content */}
-      <article className="prose prose-invert max-w-none">
-        <MDXRemote source={post.content} />
-      </article>
-
-      {/* Back to blog */}
-      <div className="mt-16 pt-8 border-t border-[#2A2A2A]">
-        <Link
-          href="/blog"
-          className="inline-flex items-center gap-2 text-[#A0A0A0] hover:text-white text-sm transition-colors"
-        >
-          <ArrowLeft size={14} />
-          Back to all articles
-        </Link>
+      <div className="mx-auto max-w-3xl px-5 py-14 sm:px-8 md:py-20">
+        <div className="prose">
+          <MDXRemote source={post.content} />
+        </div>
       </div>
-    </div>
+
+      <div className="border-t border-line">
+        <div className="mx-auto max-w-3xl px-5 py-8 sm:px-8">
+          <Link
+            href="/blog"
+            className="hud-label inline-flex items-center gap-2 text-muted transition-colors hover:text-ink"
+          >
+            <ArrowLeft size={13} />
+            Back to all articles
+          </Link>
+        </div>
+      </div>
+    </article>
   );
 }

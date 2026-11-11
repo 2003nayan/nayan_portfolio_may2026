@@ -1,148 +1,143 @@
-"use client";
-
 import Link from "next/link";
-import { ExternalLink, FileText } from "lucide-react";
-import { GithubIcon, LinkedinIcon, XIcon } from "@/components/icons";
+import { ArrowRight, ArrowUpRight, MessageSquare } from "lucide-react";
+import { GithubIcon } from "@/components/icons";
+import Button from "@/components/ui/button";
+import LocalTime from "@/components/ui/local-time";
+import { CONTAINER } from "@/components/ui/section";
+import HeroScene from "@/components/sections/hero-scene";
 import { SITE } from "@/data/site";
+import { HOME_SECTIONS } from "@/data/sections";
+
+const STATS = [
+  { value: SITE.stats.months, label: "Months in production" },
+  { value: SITE.stats.projects, label: "Projects shipped" },
+  { value: SITE.stats.ossPrs, label: "Open-source PRs" },
+];
+
+// Position in the intro's staggered entrance (see .intro-rise in globals.css)
+const rise = (i: number) => ({ "--i": i }) as React.CSSProperties;
 
 export default function Hero() {
   return (
-    <section id="hero" className="min-h-screen flex items-center pt-16">
-      <div className="max-w-7xl mx-auto px-6 w-full py-20">
-        <div className="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-12">
-          {/* Left Content */}
-          <div className="flex flex-col space-y-6">
-            {/* Available Badge */}
-            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-[#FF6B35] w-fit bg-[#141414] text-xs font-semibold tracking-widest uppercase text-[#A0A0A0]">
-              <span className="w-2 h-2 rounded-full bg-green-400 animate-pulse" />
-              <span className="text-[#FF6B35]">
-                Available for Opportunities
+    <section id="hero">
+      <div className="relative isolate flex min-h-[calc(100svh-3rem)] items-center justify-center overflow-hidden">
+        <HeroScene />
+
+        {/* Vignette keeps the copy legible over the cards */}
+        <div
+          aria-hidden="true"
+          className="pointer-events-none absolute inset-0 z-10 bg-[radial-gradient(ellipse_42%_46%_at_50%_50%,var(--bg)_25%,transparent_100%)] opacity-90"
+        />
+        <div
+          aria-hidden="true"
+          className="pointer-events-none absolute inset-x-0 bottom-0 z-10 h-32 bg-gradient-to-t from-bg to-transparent"
+        />
+
+        <div className="relative z-20 flex flex-col items-center px-5 py-28 text-center">
+          <h1 className="intro-rise" style={rise(0)}>
+            <span className="wordmark">{SITE.name}</span>
+          </h1>
+
+          <p style={rise(1)} className="intro-rise mt-6 font-display text-[clamp(1.6rem,3.4vw,2.75rem)] font-semibold tracking-[-0.03em] text-ink-strong md:mt-8">
+            {SITE.tagline}{" "}
+            <span className="serif-accent font-normal text-muted">
+              {SITE.taglineAccent}.
+            </span>
+          </p>
+
+          <p style={rise(2)} className="intro-rise mt-5 max-w-xl text-base leading-relaxed text-muted md:text-lg">
+            {SITE.description} at {SITE.company}. The only fresher sent onsite
+            to a global FMCG plant, now building shopfloor platforms and digital
+            twins for FMCG and spirits manufacturers across India and the Philippines.
+          </p>
+
+          <div style={rise(3)} className="intro-rise mt-10 flex flex-col items-center gap-3 sm:flex-row">
+            <Button href="#projects" className="px-6">
+              View work <ArrowRight size={13} />
+            </Button>
+            <Button href="#contact" variant="ghost" className="px-6">
+              <MessageSquare size={13} /> Let&apos;s talk
+            </Button>
+          </div>
+          <p style={rise(4)} className="intro-rise hud-label mt-3 text-faint">
+            {SITE.location} · <LocalTime />
+          </p>
+
+          <p style={rise(5)} className="intro-rise mt-8 text-sm text-muted md:text-base">
+            Want the short version?{" "}
+            <Link
+              href={SITE.resume}
+              target="_blank"
+              className="text-ink underline decoration-line-strong underline-offset-4 transition-colors hover:decoration-ink"
+            >
+              Read the resume
+            </Link>{" "}
+            or{" "}
+            <Link
+              href="#journey"
+              className="text-ink underline decoration-line-strong underline-offset-4 transition-colors hover:decoration-ink"
+            >
+              follow the journey
+            </Link>
+            .
+          </p>
+
+          <div style={rise(6)} className="intro-rise hud-label mt-10 flex flex-wrap items-center justify-center gap-x-5 gap-y-2 text-faint">
+            <span className="flex items-center gap-2 text-muted">
+              <span className="relative flex size-1.5">
+                <span className="absolute inline-flex size-full animate-ping rounded-full bg-success opacity-60 motion-reduce:hidden" />
+                <span className="relative inline-flex size-1.5 rounded-full bg-success" />
               </span>
-            </div>
+              Available for opportunities
+            </span>
+            <span>React · FastAPI · Python</span>
+            <Link
+              href={SITE.social.github}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-1.5 transition-colors hover:text-ink"
+            >
+              <GithubIcon size={12} /> GitHub <ArrowUpRight size={11} />
+            </Link>
+          </div>
+        </div>
 
-            {/* Headline */}
-            <div>
-              <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold tracking-tight leading-[1.05]">
-                I build &amp; own
-                <br />
-                <span className="text-[#FF6B35]">production systems</span>
-              </h1>
-            </div>
-
-            {/* Sub-description */}
-            <p className="text-[#A0A0A0] text-base sm:text-lg max-w-xl leading-relaxed">
-              {SITE.shortBio}
-            </p>
-
-            {/* Meta */}
-            <div className="flex items-center gap-3 text-sm text-[#A0A0A0]">
-              <span>📍 {SITE.location}</span>
-              <span className="text-[#2A2A2A]">·</span>
-              <Link
-                href={SITE.companyUrl}
-                target="_blank"
-                className="text-[#FF6B35] hover:underline"
-              >
-                {SITE.company}
-              </Link>
-            </div>
-
-            {/* CTAs */}
-            <div className="flex items-center gap-3 pt-2">
-              <Link
-                href="#projects"
-                className="inline-flex items-center gap-2 px-5 py-2.5 bg-[#FF6B35] text-white text-sm font-semibold rounded-xl hover:bg-[#E0E0E0] hover:text-black transition-colors"
-              >
-                <ExternalLink size={14} />
-                View Projects
-              </Link>
-              <Link
-                href={SITE.resume}
-                target="_blank"
-                className="inline-flex items-center gap-2 px-5 py-2.5 border border-[#2A2A2A] text-white text-sm font-semibold rounded-xl hover:border-[#3A3A3A] hover:bg-[#141414] transition-colors"
-              >
-                <FileText size={14} />
-                Resume
-              </Link>
-            </div>
-
-            {/* Social Icons */}
-            <div className="flex items-center gap-3 pt-1">
-              {[
-                {
-                  href: SITE.social.github,
-                  icon: <GithubIcon size={16} />,
-                  label: "GitHub",
-                },
-                {
-                  href: SITE.social.linkedin,
-                  icon: <LinkedinIcon size={16} />,
-                  label: "LinkedIn",
-                },
-                { href: SITE.social.x, icon: <XIcon size={16} />, label: "X" },
-              ].map(({ href, icon, label }) => (
+        {/* Section index, bottom-right. On xl the fixed section tracker
+            takes over this spot, so this static copy hides there. */}
+        <nav
+          aria-label="Sections"
+          className="absolute right-12 bottom-10 z-20 hidden text-right lg:block xl:hidden"
+        >
+          <ul>
+            {HOME_SECTIONS.map((item) => (
+              <li key={item.id}>
                 <Link
-                  key={label}
-                  href={href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label={label}
-                  className="w-10 h-10 rounded-xl border border-[#2A2A2A] flex items-center justify-center text-[#A0A0A0] hover:border-[#FF6B35] hover:text-white transition-all"
+                  href={`#${item.id}`}
+                  className="font-display text-lg leading-tight font-bold tracking-tight text-faint uppercase transition-colors [font-stretch:115%] hover:text-ink-strong"
                 >
-                  {icon}
+                  {item.label}
                 </Link>
-              ))}
+              </li>
+            ))}
+          </ul>
+        </nav>
+      </div>
+
+      {/* Stats strip */}
+      <div className="border-t border-line">
+        <dl className={`${CONTAINER} grid grid-cols-3`}>
+          {STATS.map((stat, i) => (
+            <div
+              key={stat.label}
+              className={`flex flex-col-reverse py-6 md:py-8 ${i > 0 ? "border-l border-line pl-4 sm:pl-8" : ""}`}
+            >
+              <dt className="hud-label mt-2 text-faint">{stat.label}</dt>
+              <dd className="font-display text-3xl font-medium tracking-tight text-ink-strong md:text-5xl">
+                {stat.value}
+              </dd>
             </div>
-          </div>
-
-          {/* Right — Profile Card */}
-          <div className="w-full lg:w-auto flex-1">
-            <div className="bg-[#141414] border border-[#2A2A2A] mx-auto rounded-2xl p-8 w-full lg:w-72 space-y-6">
-              {/* Avatar */}
-              <div className="w-32 h-32 rounded-2xl bg-[#FF6B35] flex items-center justify-center mx-auto">
-                <span className="text-white text-4xl font-bold">
-                  {SITE.initials}
-                </span>
-              </div>
-
-              {/* Name & Role */}
-              <div className="flex flex-col items-center">
-                <p className="text-white font-semibold text-lg">
-                  {SITE.description}
-                </p>
-                <p className="text-[#606060] text-sm mt-1">
-                  React · FastAPI · Python
-                </p>
-              </div>
-
-              {/* Stats */}
-              <div className="grid grid-cols-3 gap-0">
-                {[
-                  { value: SITE.stats.months, label: "MONTHS" },
-                  { value: SITE.stats.projects, label: "PROJECTS" },
-                  { value: SITE.stats.ossPrs, label: "OSS PRS" },
-                ].map((stat, i) => (
-                  <div
-                    key={stat.label}
-                    className={`text-center ${i < 2 ? "border-r border-[#2A2A2A]" : ""}`}
-                  >
-                    <p className="text-white text-xl font-bold">{stat.value}</p>
-                    <p className="text-[#606060] text-[10px] font-semibold tracking-widest mt-0.5">
-                      {stat.label}
-                    </p>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
-        </div>
-
-        {/* Scroll hint */}
-        <div className="flex justify-center mt-16">
-          <div className="w-6 h-10 border-2 border-[#2A2A2A] rounded-full flex justify-center pt-2">
-            <div className="w-1 h-2 bg-[#FF6B35] rounded-full animate-bounce" />
-          </div>
-        </div>
+          ))}
+        </dl>
       </div>
     </section>
   );

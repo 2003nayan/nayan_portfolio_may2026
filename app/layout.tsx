@@ -1,17 +1,56 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
+import { Archivo, Inter, JetBrains_Mono, Instrument_Serif } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/navbar";
 import Footer from "@/components/footer";
+import ScrollRuler from "@/components/ui/scroll-ruler";
 import { SITE } from "@/data/site";
 import { Analytics } from "@vercel/analytics/next";
 
+const archivo = Archivo({
+  subsets: ["latin"],
+  axes: ["wdth"],
+  variable: "--font-archivo",
+  display: "swap",
+});
+const inter = Inter({
+  subsets: ["latin"],
+  variable: "--font-inter",
+  display: "swap",
+});
+const jetbrainsMono = JetBrains_Mono({
+  subsets: ["latin"],
+  variable: "--font-jetbrains-mono",
+  display: "swap",
+});
+const instrumentSerif = Instrument_Serif({
+  subsets: ["latin"],
+  weight: "400",
+  style: ["normal", "italic"],
+  variable: "--font-instrument",
+  display: "swap",
+});
+
+// Runs before first paint so a saved light preference never flashes dark.
+const THEME_SCRIPT = `try{var t=localStorage.getItem("theme");if(t==="light"||t==="dark")document.documentElement.dataset.theme=t}catch(e){}`;
+
+// Plays the home intro (components/ui/intro.tsx) on a full load of "/" with
+// no hash, once per session, and never with reduced motion. Set before first
+// paint so the overlay never flashes on visits that skip it.
+const INTRO_SCRIPT = `try{if(location.pathname==="/"&&!location.hash&&!sessionStorage.getItem("intro")&&!matchMedia("(prefers-reduced-motion: reduce)").matches){document.documentElement.dataset.intro="play";sessionStorage.setItem("intro","1")}}catch(e){}`;
+
+export const viewport: Viewport = {
+  themeColor: "#111214",
+};
+
 export const metadata: Metadata = {
+  metadataBase: new URL(SITE.url),
   title: {
-    default: `${SITE.name} — Full Stack Developer`,
+    default: `${SITE.name} — Full Stack Delivery Engineer`,
     template: `%s | ${SITE.name}`,
   },
   description:
-    "Full Stack Developer from Pune. The only fresher selected for a Fortune 500 client deployment — now the sole technical owner. React, Python, Flask, WebSockets, CI/CD.",
+    "Full Stack Delivery Engineer from Pune building shopfloor platforms and digital twins for global FMCG and spirits plants. React, TypeScript, FastAPI, PostgreSQL.",
   keywords: [
     "Nayan Katiyara",
     "Full Stack Developer",
@@ -28,16 +67,16 @@ export const metadata: Metadata = {
     type: "website",
     locale: "en_IN",
     url: SITE.url,
-    title: `${SITE.name} — Full Stack Developer`,
+    title: `${SITE.name} — Full Stack Delivery Engineer`,
     description:
-      "Full Stack Developer from Pune. Fortune 500 client deployment owner. React, Python, Flask, WebSockets.",
+      "Full Stack Delivery Engineer from Pune. Shopfloor platforms and digital twins for global FMCG and spirits manufacturers.",
     siteName: SITE.name,
     images: [{ url: "/og-image.png", width: 1200, height: 630, alt: SITE.name }],
   },
   twitter: {
     card: "summary_large_image",
-    title: `${SITE.name} — Full Stack Developer`,
-    description: "Full Stack Developer. Fortune 500 client owner. React, Python, Flask.",
+    title: `${SITE.name} — Full Stack Delivery Engineer`,
+    description: "Full Stack Delivery Engineer. Shopfloor platforms and digital twins for global FMCG and spirits manufacturers.",
     creator: "@NayanKatiyara",
     images: ["/og-image.png"],
   },
@@ -54,15 +93,21 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className="dark">
+    <html
+      lang="en"
+      data-theme="dark"
+      suppressHydrationWarning
+      className={`${archivo.variable} ${inter.variable} ${jetbrainsMono.variable} ${instrumentSerif.variable}`}
+    >
       <head>
-        <link
-          href="https://api.fontshare.com/v2/css?f[]=cabinet-grotesk@400,500,600,700,800&display=swap"
-          rel="stylesheet"
-        />
+        <script dangerouslySetInnerHTML={{ __html: THEME_SCRIPT + INTRO_SCRIPT }} />
+        <noscript>
+          <style>{`.reveal,.reveal-stagger>*{opacity:1!important}`}</style>
+        </noscript>
       </head>
-      <body className="antialiased bg-[#0A0A0A] text-white">
+      <body className="min-h-screen bg-bg text-ink antialiased">
         <Navbar />
+        <ScrollRuler />
         <main>{children}</main>
         <Footer />
         <Analytics />

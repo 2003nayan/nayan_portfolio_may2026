@@ -1,5 +1,6 @@
 import { getAllPosts } from "@/lib/blog";
 import { SITE } from "@/data/site";
+import { CASE_STUDIES } from "@/data/case-studies";
 import type { MetadataRoute } from "next";
 
 export default function sitemap(): MetadataRoute.Sitemap {
@@ -10,6 +11,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
     lastModified: new Date(post.metadata.publishedAt),
     changeFrequency: "monthly" as const,
     priority: 0.7,
+  }));
+
+  const workRoutes = CASE_STUDIES.map((study) => ({
+    url: `${SITE.url}/work/${study.slug}`,
+    lastModified: new Date(),
+    changeFrequency: "monthly" as const,
+    priority: 0.8,
   }));
 
   const staticRoutes: MetadataRoute.Sitemap = [
@@ -32,6 +40,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.8,
     },
     {
+      url: `${SITE.url}/work`,
+      lastModified: new Date(),
+      changeFrequency: "monthly",
+      priority: 0.9,
+    },
+    {
       url: `${SITE.url}/open-source`,
       lastModified: new Date(),
       changeFrequency: "monthly",
@@ -39,5 +53,5 @@ export default function sitemap(): MetadataRoute.Sitemap {
     },
   ];
 
-  return [...staticRoutes, ...blogRoutes];
+  return [...staticRoutes, ...workRoutes, ...blogRoutes];
 }

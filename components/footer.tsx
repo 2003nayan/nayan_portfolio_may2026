@@ -1,49 +1,96 @@
 import Link from "next/link";
+import { ArrowUp } from "lucide-react";
 import { SITE } from "@/data/site";
-import { GithubIcon, LinkedinIcon, XIcon } from "@/components/icons";
+import { CONTAINER } from "@/components/ui/section";
+
+const COLUMNS = [
+  {
+    title: "Site",
+    links: [
+      { label: "Home", href: "/" },
+      { label: "Journey", href: "/#journey" },
+      { label: "Contact", href: "/#contact" },
+      { label: "Resume", href: SITE.resume, external: true },
+    ],
+  },
+  {
+    title: "Work",
+    links: [
+      { label: "Projects", href: "/projects" },
+      { label: "Open Source", href: "/open-source" },
+      { label: "Writing", href: "/blog" },
+    ],
+  },
+  {
+    title: "Elsewhere",
+    links: [
+      { label: "GitHub", href: SITE.social.github, external: true },
+      { label: "LinkedIn", href: SITE.social.linkedin, external: true },
+      { label: "X", href: SITE.social.x, external: true },
+      { label: "Medium", href: SITE.social.medium, external: true },
+    ],
+  },
+];
 
 export default function Footer() {
   return (
-    <footer className="border-t border-[#2A2A2A] py-8 mt-20">
-      <div className="max-w-7xl mx-auto px-6 flex flex-col sm:flex-row items-center justify-between gap-4">
-        <Link
-          href="/"
-          className="text-white font-bold text-lg tracking-tight hover:text-[#FF6B35] transition-colors"
-        >
-          NK.
-        </Link>
-        <div className="flex items-center gap-4">
-          <Link
-            href={SITE.social.github}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-[#606060] hover:text-white transition-colors"
-            aria-label="GitHub"
+    <footer className="border-t border-line bg-bg-raised">
+      <div className={`${CONTAINER} grid gap-14 py-16 md:py-20 lg:grid-cols-12`}>
+        <div className="lg:col-span-6">
+          <p className="hud-label text-faint">Say hello</p>
+          <a
+            href={`mailto:${SITE.email}`}
+            className="mt-4 inline-block font-display text-2xl font-medium tracking-tight break-all text-ink-strong transition-colors hover:text-accent-ink sm:text-4xl"
           >
-            <GithubIcon size={18} />
-          </Link>
-          <Link
-            href={SITE.social.linkedin}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-[#606060] hover:text-white transition-colors"
-            aria-label="LinkedIn"
-          >
-            <LinkedinIcon size={18} />
-          </Link>
-          <Link
-            href={SITE.social.x}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-[#606060] hover:text-white transition-colors"
-            aria-label="X / Twitter"
-          >
-            <XIcon size={18} />
-          </Link>
+            {SITE.email}
+          </a>
+          <p className="mt-4 max-w-sm text-sm text-muted">
+            {SITE.description} based in {SITE.location}. Open to full-time
+            roles and interesting problems.
+          </p>
         </div>
-        <p className="text-[#606060] text-sm">
-          Built with <span className="text-[#FF6B35]">♥</span> by {SITE.name}
-        </p>
+
+        <div className="grid grid-cols-2 gap-10 sm:grid-cols-3 lg:col-span-6">
+          {COLUMNS.map((col) => (
+            <div key={col.title}>
+              <p className="hud-label text-faint">{col.title}</p>
+              <ul className="mt-4 space-y-2.5">
+                {col.links.map((link) => (
+                  <li key={link.label}>
+                    <Link
+                      href={link.href}
+                      className="text-sm text-muted transition-colors hover:text-ink"
+                      {...("external" in link &&
+                        link.external && {
+                          target: "_blank",
+                          rel: "noopener noreferrer",
+                        })}
+                    >
+                      {link.label}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <div className="border-t border-line">
+        <div
+          className={`${CONTAINER} hud-label flex flex-col gap-3 py-5 text-faint sm:flex-row sm:items-center sm:justify-between`}
+        >
+          <p>
+            © {new Date().getFullYear()} {SITE.name}
+          </p>
+          <p>Built with Next.js · Pune, India</p>
+          <a
+            href="#"
+            className="inline-flex items-center gap-1.5 transition-colors hover:text-ink"
+          >
+            Back to top <ArrowUp size={12} />
+          </a>
+        </div>
       </div>
     </footer>
   );
