@@ -12,27 +12,28 @@ export interface JourneyMilestone {
 export const JOURNEY_MILESTONES: JourneyMilestone[] = [
   {
     title: "Fortune Global 500 FMCG — Shopfloor Operations Platform",
-    role: "Full Stack Delivery Engineer — Only Full-Stack Developer",
+    role: "Full Stack Engineer — Only Full-Stack Developer",
     dates: "Aug 2026 – Present",
     location: "Haridwar, India",
     image: "/ai4m_logo.png",
     description: [
-      "Back at the Haridwar plant to scale the platform I first worked on in 2025 — from 10 machines to 36 high-speed packaging machines across 6 production loops.",
-      "Operators get live productivity, quality and breakdown data with guided actions, and can change machine parameters straight from the UI, with audit logging and role-based access control.",
+      "Back at the Haridwar plant to scale the platform I first worked on in 2025 — from 10 machines to 36 high-speed packaging machines across 6 production loops. The line now runs with 6 operators instead of 18, one per loop.",
+      "Operators get live productivity, quality and breakdown data with guided actions, and can change machine parameters straight from the UI — PLC writes over ZeroMQ with validation checks, audit logging and role-based access control.",
       "Kept every screen fast as the platform expanded: one shared cache serves all open screens from a single database read every 2 seconds.",
+      "Owned and redesigned the field-operator tablet app, extending it from 2 to 6 loops, and built a shopfloor TV app with a live 3D top-down view of the line and breakdown alerts.",
     ],
     highlight: true,
     current: true,
   },
   {
     title: "Fortune Global 500 FMCG — Soap Line Digital Twin",
-    role: "Full Stack Delivery Engineer — Only Full-Stack Developer",
+    role: "Full Stack Engineer — Only Full-Stack Developer",
     dates: "Jun 2026 – Present",
     location: "Khamgaon, India",
     image: "/ai4m_logo.png",
     description: [
       "Built two production apps: a live 3D digital twin that shows operators what every machine on the soap line is doing, and TwinSight, a factory monitoring portal for engineers.",
-      "Delivered real-time penetration value (PV) estimation that helps operators keep product in the golden range.",
+      "Built live estimates of soap hardness (penetration value) so operators can fix the line before product goes off spec.",
       "Moved both apps from the cloud (Azure and AWS) onto an on-premise plant server.",
     ],
     highlight: true,
@@ -40,26 +41,24 @@ export const JOURNEY_MILESTONES: JourneyMilestone[] = [
   },
   {
     title: "Fortune Global 500 FMCG — Real-Time Quality System",
-    role: "Full Stack Delivery Engineer",
+    role: "Full Stack Engineer",
     dates: "Apr 2026 – Jun 2026",
     location: "Cavite, Philippines",
     image: "/ai4m_logo.png",
     description: [
       "Selected for international onsite delivery of a quality monitoring system for 5 high-speed VFFS packaging machines running at 180+ units/min.",
-      "Integrated PLC telemetry over EtherNet/IP and built operator dashboards with live telemetry, downtime tracking and 8-camera inspection streams.",
-      "Debugged ingestion failures and optimised the backend for stable, continuous plant operation.",
-    ],
+      "Integrated PLC telemetry over EtherNet/IP and built operator dashboards with live telemetry, downtime tracking and 8-camera inspection streams.",    ],
     highlight: true,
   },
   {
     title: "Multinational Spirits Company — Distillery Digital Twin",
-    role: "Full Stack Delivery Engineer",
+    role: "Full Stack Engineer",
     dates: "Jan 2026 – Mar 2026",
     location: "Remote · Nashik, India",
     image: "/ai4m_logo.png",
     description: [
       "Built a desktop application that lets engineers simulate and compare recipe changes before production.",
-      "Integrated Physics-Informed Neural Network (PINN) models for real-time sensory quality prediction, with phase-aware dashboards and anomaly insights.",
+      "Built validated lab and time-series data pipelines feeding the app's Physics-Informed Neural Network (PINN) sensory quality predictions.",
     ],
     highlight: false,
   },
@@ -79,7 +78,7 @@ export const JOURNEY_MILESTONES: JourneyMilestone[] = [
   {
     title: "Full-Time Conversion",
     role: "Full Stack Developer",
-    dates: "July 2025",
+    dates: "Aug 2025",
     location: "AI4M Technology",
     image: "/ai4m_logo.png",
     description: [

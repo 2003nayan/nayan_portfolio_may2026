@@ -88,7 +88,7 @@ export const CLIENT_PROJECTS: Project[] = [
     featured: true,
     active: true,
     description:
-      "Shopfloor operations platform for a global FMCG plant in Haridwar, scaled from 10 to 36 high-speed packaging machines across 6 loops. Operators get live productivity, quality and breakdown data with guided actions, and can change machine parameters from the UI.",
+      "Shopfloor operations platform for a global FMCG plant in Haridwar, scaled from 10 to 36 high-speed packaging machines across 6 loops, now run by 6 operators instead of 18. Operators get live productivity, quality and breakdown data with guided actions, and can change machine parameters from the UI.",
     highlight: "Only full-stack developer — scaled from 10 to 36 machines",
     technologies: ["React", "TypeScript", "FastAPI", "PostgreSQL", "TimescaleDB", "PLC Integration"],
     links: [],

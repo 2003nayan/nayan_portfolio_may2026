@@ -39,7 +39,7 @@ export const CASE_STUDIES: CaseStudy[] = [
       "A shopfloor platform for a global FMCG packaging plant. Operators see productivity, quality and breakdowns live, act on guided alerts, and change machine parameters from the screen, across 36 high-speed machines.",
     stats: [
       { value: "10 → 36", label: "Machines" },
-      { value: "6", label: "Production loops" },
+      { value: "18 → 6", label: "Operators for 6 loops" },
       { value: "1 read / 2s", label: "DB load for all screens" },
       { value: "2h → 15m", label: "Deploy time" },
     ],
@@ -49,7 +49,7 @@ export const CASE_STUDIES: CaseStudy[] = [
     ],
     ownership: [
       "I'm the only full-stack developer on the platform: frontend, backend API, deployment, and day-to-day changes with operators on the shopfloor.",
-      "Other AI4M teams own PLC data collection, the plant databases and the ML models. My backend reads their data and turns it into screens operators can act on.",
+      "Other AI4M teams own PLC data collection, the plant databases and the ML models. My backend reads their data and turns it into screens operators can act on. I worked with a functional engineer to understand how each machine behaves.",
     ],
     architecture: [
       {
@@ -73,7 +73,7 @@ export const CASE_STUDIES: CaseStudy[] = [
       },
     ],
     architectureNote:
-      "Setpoint changes travel back down to the machine through a write service that records the operator's ID and reason for every change.",
+      "Setpoint changes travel back down to the machine as PLC writes over ZeroMQ, with validation checks, and every change is recorded with the operator's ID and reason.",
     built: [
       { title: "Shopfloor dashboard & loop cockpits", detail: "Live OEE, output and status for every machine, grouped by production loop." },
       { title: "Machine views with a 3D digital twin", detail: "A detail view per machine with live parameters and an animated 3D model of its state (Three.js / React Three Fiber)." },
@@ -82,7 +82,10 @@ export const CASE_STUDIES: CaseStudy[] = [
       { title: "Two-layer access control", detail: "Route guards block whole screens; per-control permissions gate buttons inside a screen. The last admin can never be removed, so nobody gets locked out." },
       { title: "History at plant scale", detail: "Event, stoppage, production and work-instruction history over multi-million-row tables." },
       { title: "Camera streams with fallback", detail: "Live inspection camera feeds (HLS) on the machine view, switching to recorded footage when a stream drops." },
+      { title: "Field-operator tablet app", detail: "Owned and redesigned the tablet app operators carry on the line, extending it from 2 to 6 loops: alerts, work instructions and acknowledgements." },
+      { title: "Shopfloor TV app", detail: "A live top-down 3D view of the line (Three.js) for shopfloor screens, with a status badge on every machine and breakdown alerts." },
       { title: "PLC diagnostic tool", detail: "A read-only desktop, terminal and CLI tool that reads Allen-Bradley PLCs over EtherNet/IP and Mitsubishi PLCs through a hand-written MC protocol (SLMP) client, reaching machines on isolated plant networks over SSH." },
+      { title: "Plant operations toolkit", detail: "Desktop tools I built so the line can be run and supported without logging into servers by hand: one-click deployment of the UI to all 4 loop displays (with a check that services came back up), a connectivity check for every device and PLC on the line, a monitor that flags any data table that stopped receiving data, and a safe editor for each loop's configuration settings." },
       { title: "Whole-plant simulator", detail: "A mock data source that simulates the entire plant, so screens can be built and tested without touching production." },
     ],
     challenges: [
@@ -107,14 +110,22 @@ export const CASE_STUDIES: CaseStudy[] = [
         solution:
           "Writes sit behind role-based access at both route and control level, and every write is recorded with who made it and why.",
       },
+      {
+        title: "Shipping updates to 4 shopfloor displays",
+        problem:
+          "Each update meant logging in to 4 display devices by SSH and typing the same commands, where one missed step could leave a loop screen down.",
+        solution:
+          "A desktop deploy tool that updates the devices one at a time, stops on the first failed step and confirms both services are running again before moving on.",
+      },
     ],
     results: [
+      "The line now runs all 6 loops with 6 operators instead of 18, one per loop.",
       "Scaled from 10 machines in 2 loops (2025) to 36 machines across 6 loops (2026).",
       "Any number of open screens costs one database read every 2 seconds.",
       "Deployment time cut from 2 hours to 15 minutes with an in-house CI/CD pipeline.",
       "Selected as the only fresher for the 2025 onsite deployment; came back in 2026 as the platform's only full-stack developer.",
     ],
-    stack: ["React", "TypeScript", "Vite", "Tailwind CSS", "Zustand", "Three.js", "React Three Fiber", "Recharts", "HLS.js", "FastAPI", "Python", "PostgreSQL", "TimescaleDB", "Vitest", "Pytest", "PyQt5 · pycomm3 · SLMP (PLC tool)", "Flask · WebSockets · ZeroMQ (2025)"],
+    stack: ["React", "TypeScript", "Vite", "Tailwind CSS", "Zustand", "Three.js", "React Three Fiber", "Recharts", "HLS.js", "FastAPI", "Python", "PostgreSQL", "TimescaleDB", "Vitest", "Pytest", "PyQt5/PyQt6 · paramiko · pycomm3 · SLMP (desktop tools)", "Flask · WebSockets · ZeroMQ (2025)"],
   },
   {
     slug: "khamgaon",
@@ -165,6 +176,7 @@ export const CASE_STUDIES: CaseStudy[] = [
       { title: "PV overview & lab entry", detail: "Predicted, estimated and manual lab PV side by side, with a lab-entry form so predictions can be checked against reality." },
       { title: "SKU changeover", detail: "Operators switch the active product with a confirm step; every changeover lands in history." },
       { title: "Analytics & historian", detail: "PV trend and accuracy, material blend trends, and alert, event and changeover history." },
+      { title: "PV accuracy report", detail: "A desktop app that produces a PDF report comparing lab hardness readings with both PV models over any time period, so the plant can see how often each model is right." },
       { title: "PLC tag verification (TwinSight)", detail: "Checks 180+ PLC tags for staleness and source with per-tag thresholds, so engineers know which signals to trust." },
       { title: "Signal analysis & experiments (TwinSight)", detail: "Time-series charts with shift/scale adjustments, and experiment tracking that compares process changes such as machine dimensions, recycle flow, RPM and temperature." },
       { title: "Configuration with audit trail (TwinSight)", detail: "Engineers update device and tag configuration from the browser; every change is logged." },
@@ -195,9 +207,7 @@ export const CASE_STUDIES: CaseStudy[] = [
     ],
     results: [
       "Two production apps designed, built and deployed by one developer.",
-      "The operator twin is used daily on the shopfloor.",
-      "Real-time PV estimation means less PV drift: product stays in the golden range for longer.",
-      "Both apps now run on the plant's own server instead of Azure and AWS.",
+      "The operator twin is used daily on the shopfloor.",      "Both apps now run on the plant's own server instead of Azure and AWS.",
     ],
     stack: ["React", "TypeScript", "Vite", "Tailwind CSS", "TanStack Query", "TanStack Router", "Three.js", "React Three Fiber", "Recharts", "FastAPI", "Python", "PostgreSQL", "GitLab CI/CD", "Vitest", "Pytest", "Azure & AWS (before)"],
   },
@@ -254,13 +264,6 @@ export const CASE_STUDIES: CaseStudy[] = [
     ],
     challenges: [
       {
-        title: "Ingestion that never stops",
-        problem:
-          "At 180+ units a minute the telemetry never pauses, and a failed write leaves gaps in the data exactly when operators need it.",
-        solution:
-          "Debugged the ingestion failures and optimised backend processing and database writes so monitoring stayed stable through continuous production.",
-      },
-      {
         title: "Delivering on a live line, abroad",
         problem:
           "Changes go out next to running machines in another country, with short windows and no room for downtime caused by software.",
@@ -271,7 +274,6 @@ export const CASE_STUDIES: CaseStudy[] = [
     results: [
       "Live monitoring across 5 high-speed VFFS machines running at 180+ units per minute.",
       "Telemetry, downtime and 8 camera streams on one operator screen.",
-      "Stable monitoring through continuous plant operation.",
     ],
     stack: ["React", "TypeScript", "FastAPI", "Python", "PostgreSQL", "EtherNet/IP", "MJPEG streams"],
   },
