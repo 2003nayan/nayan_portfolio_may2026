@@ -22,9 +22,9 @@ export const PROJECTS: Project[] = [
     featured: true,
     active: true,
     description:
-      "A SaaS platform empowering YouTube creators with AI-powered tools — video analysis, title generation, and content optimization.",
-    highlight: "AI-powered SaaS with integrated payments and real-time video analysis",
-    technologies: ["Next.js", "Clerk", "Convex DB", "Stripe", "YouTube API", "Claude 3.7"],
+      "A web app that uses AI to turn long videos into ready-to-post titles, scripts and thumbnails for content creators. Caching between pipeline stages cut AI costs 60%, with paid plans and usage limits.",
+    highlight: "AI video-to-content pipeline — caching cut AI costs 60%",
+    technologies: ["Next.js", "ConvexDB", "OpenAI", "Claude", "Clerk"],
     links: [
       { type: "Source", href: "https://github.com/2003nayan/creatorsbrain" },
       { type: "Live Demo", href: "https://creatorsbrain.vercel.app/" },
@@ -38,9 +38,9 @@ export const PROJECTS: Project[] = [
     featured: true,
     active: true,
     description:
-      "Real-time collaborative document editing with live cursors, presence awareness, and instant sync. Think Google Docs, built from scratch.",
+      "A Google-Docs-style editor where multiple people edit the same document at once — live cursors, built-in AI chat and translation, built serverless on Cloudflare Workers.",
     highlight: "Real-time collaboration with multi-user document editing",
-    technologies: ["Next.js", "Clerk", "Liveblocks", "Firestore", "Cloudflare Workers"],
+    technologies: ["Next.js", "Cloudflare Workers", "Liveblocks", "Firestore"],
     links: [
       { type: "Source", href: "https://github.com/2003nayan/Collaborix" },
       { type: "Live Demo", href: "https://www.collaborix.space/" },

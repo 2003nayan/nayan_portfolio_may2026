@@ -22,10 +22,10 @@ const HIGHLIGHTS = [
 ];
 
 const STACK = [
-  { label: "Frontend", detail: "React, Next.js, TypeScript, Tailwind" },
-  { label: "Backend", detail: "Python, FastAPI, Flask, Node.js" },
-  { label: "Data", detail: "PostgreSQL, MongoDB, Redis" },
-  { label: "DevOps", detail: "Docker, CI/CD, Nginx, Linux" },
+  { label: "Frontend", detail: "React, Next.js, TypeScript, TanStack Query, Three.js" },
+  { label: "Backend", detail: "Python, FastAPI, Node.js, WebSockets, ZeroMQ" },
+  { label: "Data", detail: "PostgreSQL, TimescaleDB, SQL" },
+  { label: "Industrial & DevOps", detail: "PLC integration (EtherNet/IP, SLMP), Docker, GitLab CI/CD, AWS, Azure" },
 ];
 
 export default function About() {

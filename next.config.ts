@@ -5,6 +5,9 @@ const nextConfig: NextConfig = {
   turbopack: {
     root: path.resolve(__dirname),
   },
+  images: {
+    qualities: [60, 75],
+  },
 };
 
 export default nextConfig;

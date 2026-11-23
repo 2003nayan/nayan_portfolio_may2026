@@ -5,17 +5,17 @@ import Image from "next/image";
 
 // x / y: card centre as % of the hero. w: width in px at a 1440px viewport.
 // depth 0..1: far cards are smaller, dimmer, softer and move less.
-// mobile: kept on small screens, where only the top and bottom bands are free.
+// Cards are desktop-only: on tall narrow screens they collapse onto the copy.
 // Layout keeps clear of the wordmark band (y 22–40%) and the section index
 // (bottom-right). Photos in /hero are from Unsplash (Unsplash License);
 // the rest are project screenshots. label: shown on hover (pointer devices).
 const CARDS = [
   // top band
   { src: "/hero/factory-robots.webp", label: "Factory floor", x: 6, y: 12, w: 200, depth: 0.55 }, // Simon Kadula
-  { src: "/creatorsbrain.png", label: "CreatorsBrain", x: 23, y: 9, w: 220, depth: 0.5, mobile: true },
+  { src: "/creatorsbrain.png", label: "CreatorsBrain", x: 23, y: 9, w: 220, depth: 0.5 },
   { src: "/hero/robot-arm-lab.webp", label: "Automation", x: 40, y: 8, w: 150, depth: 0.3 }, // Testalize.me
-  { src: "/hero/silicon-wafer.webp", label: "Hardware", x: 57, y: 9, w: 130, depth: 0.25, mobile: true }, // Laura Ockel
-  { src: "/hero/server-fans.webp", label: "On-prem servers", x: 74, y: 11, w: 220, depth: 0.6, mobile: true }, // Winston Chen
+  { src: "/hero/silicon-wafer.webp", label: "Hardware", x: 57, y: 9, w: 130, depth: 0.25 }, // Laura Ockel
+  { src: "/hero/server-fans.webp", label: "On-prem servers", x: 74, y: 11, w: 220, depth: 0.6 }, // Winston Chen
   { src: "/BayzCrypt.png", label: "BayzCrypt", x: 92, y: 9, w: 170, depth: 0.4 },
   { src: "/hero/server-rack.webp", label: "Infrastructure", x: 98, y: 30, w: 130, depth: 0.35 }, // Domaintechnik
   // left flank
@@ -23,14 +23,14 @@ const CARDS = [
   { src: "/hero/metrics-screen.webp", label: "Live metrics", x: 30, y: 60, w: 120, depth: 0.2 }, // Stephen Dawson
   { src: "/hero/circuit-board.webp", label: "PLC integration", x: 2, y: 74, w: 150, depth: 0.4 }, // Alexandre Debiève
   { src: "/motionui.png", label: "MotionUI", x: 19, y: 77, w: 250, depth: 0.95 },
-  { src: "/hero/conveyor-line.webp", label: "Packaging line", x: 9, y: 95, w: 220, depth: 0.65, mobile: true }, // Salvador Escalante
+  { src: "/hero/conveyor-line.webp", label: "Packaging line", x: 9, y: 95, w: 220, depth: 0.65 }, // Salvador Escalante
   // right flank
   { src: "/collaborix-2.png", label: "Collaborix", x: 87, y: 52, w: 280, depth: 0.9 },
   { src: "/hero/analytics-laptop.webp", label: "Analytics", x: 70, y: 60, w: 125, depth: 0.2 }, // Luke Chesser
   { src: "/hero/robot-arm-line.webp", label: "Digital twins", x: 79, y: 79, w: 220, depth: 0.8 }, // Homa Appliances
   // bottom band
-  { src: "/assets/projects/tss.png", label: "Terra Vault", x: 48, y: 96, w: 150, depth: 0.45, mobile: true },
-  { src: "/hero/conveyor-robot.webp", label: "Shopfloor", x: 66, y: 97, w: 190, depth: 0.6, mobile: true }, // Salvador Escalante
+  { src: "/assets/projects/tss.png", label: "Terra Vault", x: 48, y: 96, w: 150, depth: 0.45 },
+  { src: "/hero/conveyor-robot.webp", label: "Shopfloor", x: 66, y: 97, w: 190, depth: 0.6 }, // Salvador Escalante
 ];
 
 // Partial arcs around the hero centre: [radius, dash length, rotation, colour, spin seconds]
@@ -121,7 +121,7 @@ export default function HeroScene() {
         return (
           <div
             key={card.src}
-            className={`scene-hit pointer-events-auto absolute ${card.mobile ? "" : "hidden md:block"}`}
+            className="scene-hit pointer-events-auto absolute hidden md:block"
             style={{
               left: `${card.x}%`,
               top: `${card.y}%`,

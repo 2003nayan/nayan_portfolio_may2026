@@ -120,6 +120,7 @@ export const CASE_STUDIES: CaseStudy[] = [
     ],
     results: [
       "The line now runs all 6 loops with 6 operators instead of 18, one per loop.",
+      "Machine-health alerts cut breakdown response from 3–4 hours to ~30 minutes; weekly breakdowns from ~10 to 3–4.",
       "Scaled from 10 machines in 2 loops (2025) to 36 machines across 6 loops (2026).",
       "Any number of open screens costs one database read every 2 seconds.",
       "Deployment time cut from 2 hours to 15 minutes with an in-house CI/CD pipeline.",
@@ -207,7 +208,9 @@ export const CASE_STUDIES: CaseStudy[] = [
     ],
     results: [
       "Two production apps designed, built and deployed by one developer.",
-      "The operator twin is used daily on the shopfloor.",      "Both apps now run on the plant's own server instead of Azure and AWS.",
+      "Live hardness (PV) estimates give operators a continuous reading instead of ~10 lab samples a day.",
+      "The operator twin is used daily on the shopfloor.",
+      "Both apps now run on the plant's own server instead of Azure and AWS.",
     ],
     stack: ["React", "TypeScript", "Vite", "Tailwind CSS", "TanStack Query", "TanStack Router", "Three.js", "React Three Fiber", "Recharts", "FastAPI", "Python", "PostgreSQL", "GitLab CI/CD", "Vitest", "Pytest", "Azure & AWS (before)"],
   },

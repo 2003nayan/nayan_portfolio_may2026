@@ -19,6 +19,7 @@ export const JOURNEY_MILESTONES: JourneyMilestone[] = [
     description: [
       "Back at the Haridwar plant to scale the platform I first worked on in 2025 — from 10 machines to 36 high-speed packaging machines across 6 production loops. The line now runs with 6 operators instead of 18, one per loop.",
       "Operators get live productivity, quality and breakdown data with guided actions, and can change machine parameters straight from the UI — PLC writes over ZeroMQ with validation checks, audit logging and role-based access control.",
+      "Built machine-health screens with early-warning alerts and guided preventive fixes — breakdown response fell from 3–4 hours to ~30 minutes and weekly breakdowns from ~10 to 3–4.",
       "Kept every screen fast as the platform expanded: one shared cache serves all open screens from a single database read every 2 seconds.",
       "Owned and redesigned the field-operator tablet app, extending it from 2 to 6 loops, and built a shopfloor TV app with a live 3D top-down view of the line and breakdown alerts.",
     ],
@@ -78,7 +79,7 @@ export const JOURNEY_MILESTONES: JourneyMilestone[] = [
   {
     title: "Full-Time Conversion",
     role: "Full Stack Developer",
-    dates: "Aug 2025",
+    dates: "Sep 2025",
     location: "AI4M Technology",
     image: "/ai4m_logo.png",
     description: [
@@ -107,6 +108,18 @@ export const JOURNEY_MILESTONES: JourneyMilestone[] = [
     image: "/ai4m_logo.png",
     description: [
       "Started professional journey — React, Next.js, version control, and collaborative workflows.",
+    ],
+    highlight: false,
+  },
+  {
+    title: "B.Tech — Artificial Intelligence & Machine Learning",
+    role: "Savitribai Phule Pune University · CGPA 7.90/10",
+    dates: "May 2025",
+    location: "Pune, India",
+    image: "",
+    description: [
+      "Graduated with a B.Tech in AI & Machine Learning.",
+      "Published “Automated Result Analysis Using Python and Streamlit” in IJDSA (2025).",
     ],
     highlight: false,
   },

@@ -16,6 +16,8 @@ npm run lint    # eslint (flat config, eslint-config-next)
 
 There is no test suite. Verify changes with `npm run build` and `npm run lint`.
 
+Dev runs on webpack but `next build` uses Next 16's default, Turbopack (`next.config.ts` only sets `turbopack.root`), so a change that works in dev can still fail the build — always run the build.
+
 ## Architecture
 
 Personal portfolio site, deployed on Vercel (`@vercel/analytics` in the root layout). Almost everything is a server component rendered from static data; there is no database.
@@ -42,6 +44,6 @@ Personal portfolio site, deployed on Vercel (`@vercel/analytics` in the root lay
 - `twin-stage.tsx` lazy-loads each twin with `next/dynamic` (`ssr: false`) near the viewport and pauses rendering off screen. Anything it imports statically (e.g. `views.ts`) must stay free of three.js imports.
 - Show only the models and their motion; no client names, sites or data.
 
-**Client components** are the exception and are marked `"use client"`: navbar, contact form, theme toggle, scroll ruler, reveal-on-scroll, local time, hero scene. Animations respect `prefers-reduced-motion` in `globals.css`.
+**Client components** are the exception and are marked `"use client"`: the navbar, the contact form, the hero scene, the 3D twins, and the interactive widgets in `components/ui/` (intro, reveal, section tracker, scroll ruler, theme toggle, local time, scramble text), plus `hooks/use-scroll-animation.ts`. Keep data files and sections as server code; push interactivity into a small client leaf. Animations respect `prefers-reduced-motion` in `globals.css`.
 
 Path alias: `@/*` → repo root.
