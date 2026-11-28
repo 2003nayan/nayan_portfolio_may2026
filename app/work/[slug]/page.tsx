@@ -69,7 +69,7 @@ export default async function CaseStudyPage({ params }: Props) {
         <div className={`${CONTAINER} pt-16 pb-14 md:pt-24 md:pb-20`}>
           <p className="hud-label text-muted">
             <Link href="/" className="transition-colors hover:text-ink">
-              Index
+              Home
             </Link>
             <span className="mx-2 text-faint">/</span>
             <Link href="/work" className="transition-colors hover:text-ink">
@@ -127,7 +127,18 @@ export default async function CaseStudyPage({ params }: Props) {
           </div>
         </Block>
 
-        <Block index="03" label="Architecture">
+        <Block index="03" label="Results">
+          <ul className="max-w-3xl space-y-3">
+            {study.results.map((r) => (
+              <li key={r} className="flex gap-3 leading-relaxed text-ink">
+                <span className="mt-2.5 size-1.5 shrink-0 bg-accent" aria-hidden="true" />
+                {r}
+              </li>
+            ))}
+          </ul>
+        </Block>
+
+        <Block index="04" label="How it works">
           <Architecture tiers={study.architecture} />
           {study.architectureNote && (
             <p className="mt-4 max-w-3xl text-sm text-muted">
@@ -136,7 +147,7 @@ export default async function CaseStudyPage({ params }: Props) {
           )}
         </Block>
 
-        <Block index="04" label="What I built">
+        <Block index="05" label="What I built">
           <ul className="grid border-t border-l border-line sm:grid-cols-2">
             {study.built.map((item) => (
               <li key={item.title} className="border-r border-b border-line p-5">
@@ -151,7 +162,7 @@ export default async function CaseStudyPage({ params }: Props) {
           </ul>
         </Block>
 
-        <Block index="05" label="Hard parts">
+        <Block index="06" label="Technical challenges">
           <div className="space-y-10">
             {study.challenges.map((c) => (
               <div key={c.title} className="max-w-3xl">
@@ -165,17 +176,6 @@ export default async function CaseStudyPage({ params }: Props) {
               </div>
             ))}
           </div>
-        </Block>
-
-        <Block index="06" label="Results">
-          <ul className="max-w-3xl space-y-3">
-            {study.results.map((r) => (
-              <li key={r} className="flex gap-3 leading-relaxed text-ink">
-                <span className="mt-2.5 size-1.5 shrink-0 bg-accent" aria-hidden="true" />
-                {r}
-              </li>
-            ))}
-          </ul>
         </Block>
 
         <Block index="07" label="Stack">

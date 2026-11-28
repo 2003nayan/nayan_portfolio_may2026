@@ -115,7 +115,7 @@ export function PageHeader({
       <div className={`${CONTAINER} pt-16 pb-14 md:pt-24 md:pb-20`}>
         <p className="hud-label text-muted">
           <Link href="/" className="transition-colors hover:text-ink">
-            Index
+            Home
           </Link>
           <span className="mx-2 text-faint">/</span>
           <span className="text-ink">{crumb}</span>

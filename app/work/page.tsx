@@ -6,7 +6,7 @@ import { CASE_STUDIES } from "@/data/case-studies";
 export const metadata: Metadata = {
   title: "Case studies",
   description:
-    "Client platforms for global FMCG and spirits manufacturers: shopfloor operations, digital twins and real-time quality systems.",
+    "Case studies on software for factory operations, machine monitoring, and quality control.",
 };
 
 export default function WorkPage() {
@@ -19,7 +19,7 @@ export default function WorkPage() {
             Client <span className="serif-accent">case studies</span>.
           </>
         }
-        intro="Platforms running on real factory floors for global FMCG and spirits manufacturers: the problem, my role, the architecture and the hard parts."
+        intro="Software built for consumer goods and spirits manufacturers. Each case study explains what the factory needed, what I built, and what changed."
       />
       <div className={`${CONTAINER} py-16 md:py-24`}>
         <CaseStudyGrid studies={CASE_STUDIES} />

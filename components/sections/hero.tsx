@@ -9,9 +9,9 @@ import { SITE } from "@/data/site";
 import { HOME_SECTIONS } from "@/data/sections";
 
 const STATS = [
-  { value: SITE.stats.months, label: "Months in production" },
+  { value: "Jun 2024", label: "Started in software engineering" },
   { value: SITE.stats.projects, label: "Projects shipped" },
-  { value: SITE.stats.ossPrs, label: "Open-source PRs" },
+  { value: SITE.stats.ossPrs, label: "Open-source pull requests" },
 ];
 
 // Position in the intro's staggered entrance (see .intro-rise in globals.css)
@@ -46,9 +46,7 @@ export default function Hero() {
           </p>
 
           <p style={rise(2)} className="intro-rise mt-5 max-w-xl text-base leading-relaxed text-muted md:text-lg">
-            {SITE.description} at {SITE.company}. The only fresher sent onsite
-            to a global FMCG plant, now building shopfloor platforms and digital
-            twins for FMCG and spirits manufacturers across India and the Philippines.
+            {SITE.shortBio}
           </p>
 
           <div style={rise(3)} className="intro-rise mt-10 flex flex-col items-center gap-3 sm:flex-row">

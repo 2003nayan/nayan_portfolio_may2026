@@ -36,7 +36,7 @@ export default async function BlogPostPage({ params }: Props) {
         <div className="mx-auto max-w-3xl px-5 pt-16 pb-12 sm:px-8 md:pt-24">
           <p className="hud-label text-muted">
             <Link href="/" className="transition-colors hover:text-ink">
-              Index
+              Home
             </Link>
             <span className="mx-2 text-faint">/</span>
             <Link href="/blog" className="transition-colors hover:text-ink">

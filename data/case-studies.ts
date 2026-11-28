@@ -30,18 +30,18 @@ export interface CaseStudy {
 export const CASE_STUDIES: CaseStudy[] = [
   {
     slug: "haridwar",
-    client: "Fortune Global 500 FMCG",
+    client: "Fortune Global 500 consumer goods company",
     title: "Shopfloor Operations Platform",
     location: "Haridwar, India · Onsite",
     dates: "Sept 2025 – Dec 2025 · Aug 2026 – Present",
     role: "Only full-stack developer",
     summary:
-      "A shopfloor platform for a global FMCG packaging plant. Operators see productivity, quality and breakdowns live, act on guided alerts, and change machine parameters from the screen, across 36 high-speed machines.",
+      "Operators use one app to monitor 36 packaging machines, respond to alerts, and adjust machine settings. I expanded the platform from 10 to 36 machines, helping the plant run those areas with 6 operators instead of 18.",
     stats: [
       { value: "10 → 36", label: "Machines" },
-      { value: "18 → 6", label: "Operators for 6 loops" },
-      { value: "1 read / 2s", label: "DB load for all screens" },
-      { value: "2h → 15m", label: "Deploy time" },
+      { value: "18 → 6", label: "Operators across 6 machine groups" },
+      { value: "1 read / 2s", label: "Shared database refresh for all screens" },
+      { value: "2h → 15m", label: "Time to roll out updates" },
     ],
     problem: [
       "The plant runs high-speed packaging machines grouped into production loops. Operators needed one place to see how every machine is running (output, quality and stoppages) and to act on problems before they cost production.",
@@ -69,13 +69,13 @@ export const CASE_STUDIES: CaseStudy[] = [
       },
       {
         label: "Frontend · React + TypeScript",
-        nodes: ["Shopfloor dashboard", "Loop cockpits", "Machine view + 3D twin", "History & work instructions", "Control panel"],
+        nodes: ["Shopfloor dashboard", "Machine group dashboards", "Machine view + 3D twin", "History & work instructions", "Control panel"],
       },
     ],
     architectureNote:
       "Setpoint changes travel back down to the machine as PLC writes over ZeroMQ, with validation checks, and every change is recorded with the operator's ID and reason.",
     built: [
-      { title: "Shopfloor dashboard & loop cockpits", detail: "Live OEE, output and status for every machine, grouped by production loop." },
+      { title: "Shopfloor dashboard & machine group dashboards", detail: "Live equipment effectiveness (OEE), output and status for every machine, grouped by production loop." },
       { title: "Machine views with a 3D digital twin", detail: "A detail view per machine with live parameters and an animated 3D model of its state (Three.js / React Three Fiber)." },
       { title: "Guided alerts & work instructions", detail: "Productivity, quality and breakdown alerts with guided actions for operators, plus a full history of what was done." },
       { title: "Machine control from the UI", detail: "Operators change machine setpoints directly from the control panel; every write is logged with operator ID and reason." },
@@ -124,28 +124,28 @@ export const CASE_STUDIES: CaseStudy[] = [
       "Scaled from 10 machines in 2 loops (2025) to 36 machines across 6 loops (2026).",
       "Any number of open screens costs one database read every 2 seconds.",
       "Deployment time cut from 2 hours to 15 minutes with an in-house CI/CD pipeline.",
-      "Selected as the only fresher for the 2025 onsite deployment; came back in 2026 as the platform's only full-stack developer.",
+      "Selected as the only new graduate for the 2025 onsite deployment; came back in 2026 as the platform's only full-stack developer.",
     ],
     stack: ["React", "TypeScript", "Vite", "Tailwind CSS", "Zustand", "Three.js", "React Three Fiber", "Recharts", "HLS.js", "FastAPI", "Python", "PostgreSQL", "TimescaleDB", "Vitest", "Pytest", "PyQt5/PyQt6 · paramiko · pycomm3 · SLMP (desktop tools)", "Flask · WebSockets · ZeroMQ (2025)"],
   },
   {
     slug: "khamgaon",
-    client: "Fortune Global 500 FMCG",
+    client: "Fortune Global 500 consumer goods company",
     title: "Soap Line Digital Twin & TwinSight",
     location: "Khamgaon, India · Onsite",
     dates: "Jun 2026 – Present",
     role: "Only full-stack developer",
     summary:
-      "Two production apps for a soap finishing line: a live 3D digital twin that shows operators what every machine is doing, and TwinSight, a monitoring portal engineers use to trust their data and run process experiments.",
+      "I built two apps for a soap factory. Operators use a live 3D model to see what each machine is doing and track soap hardness. Engineers use TwinSight to check that machine readings are current and compare the results of process changes.",
     stats: [
       { value: "2", label: "Production apps" },
-      { value: "180+", label: "PLC tags verified" },
-      { value: "3D", label: "Live line twin" },
-      { value: "On-prem", label: "Moved off Azure & AWS" },
+      { value: "180+", label: "Machine signals checked for stale readings" },
+      { value: "3D", label: "Live model of the soap line" },
+      { value: "Factory server", label: "Moved off Azure & AWS" },
     ],
     problem: [
       "A soap finishing line turns soap noodles into finished bars through a chain of machines: mixer, mills, plodders, cutter and stamper. Quality is tracked through penetration value (PV), a measure of soap hardness that usually comes from slow manual lab tests.",
-      "Operators needed to see the line's live state at a glance and keep PV inside its golden range. Engineers needed a separate tool to trust the data behind it: check that every PLC signal is actually live, analyse signals over time, and track process experiments.",
+      "Operators needed to see the line's live state at a glance and keep soap hardness within its target range. Engineers needed a separate tool to trust the data behind it: check that readings from machine controllers (PLCs) are up to date, analyse signals over time, and track process experiments.",
     ],
     ownership: [
       "I designed, built and deployed both apps as the only full-stack developer: React frontends, FastAPI backends, CI/CD and the move to the plant server.",
@@ -216,21 +216,20 @@ export const CASE_STUDIES: CaseStudy[] = [
   },
   {
     slug: "cavite",
-    client: "Fortune Global 500 FMCG",
+    client: "Fortune Global 500 consumer goods company",
     title: "Real-Time Quality System",
     location: "Cavite, Philippines · Onsite",
     dates: "Apr 2026 – Jun 2026",
     role: "Built the application end to end",
     summary:
-      "A real-time quality monitoring system for high-speed sachet packaging: live machine telemetry, downtime and camera inspection on one screen, delivered onsite in the Philippines.",
+      "I built and rolled out an app at a factory in the Philippines. Operators can see live machine readings, stoppages, and inspection camera feeds on one screen.",
     stats: [
-      { value: "5", label: "VFFS machines" },
-      { value: "180+", label: "Units per minute" },
+      { value: "5", label: "Sachet-packaging machines monitored" },
       { value: "8", label: "Camera streams" },
       { value: "Onsite", label: "International delivery" },
     ],
     problem: [
-      "Vertical form-fill-seal (VFFS) machines form, fill and seal sachets at more than 180 units a minute. A weak seal (jaws not hot enough, or not pressed long enough) means leaking product and waste, and at that speed a small problem multiplies fast.",
+      "Vertical form-fill-seal (VFFS) machines form, fill and seal sachets in a single process. A weak seal (jaws not hot enough, or not pressed long enough) means leaking product and waste, and at that speed a small problem multiplies fast.",
       "The plant needed every machine's state live (temperatures, torque, downtime and inspection images) so operators catch quality drift as it happens instead of at end-of-shift checks.",
     ],
     ownership: [
@@ -275,7 +274,7 @@ export const CASE_STUDIES: CaseStudy[] = [
       },
     ],
     results: [
-      "Live monitoring across 5 high-speed VFFS machines running at 180+ units per minute.",
+      "Live monitoring across five high-speed sachet-packaging machines.",
       "Telemetry, downtime and 8 camera streams on one operator screen.",
     ],
     stack: ["React", "TypeScript", "FastAPI", "Python", "PostgreSQL", "EtherNet/IP", "MJPEG streams"],
@@ -292,8 +291,8 @@ export const CASE_STUDIES: CaseStudy[] = [
     stats: [
       { value: "Desktop", label: "Electron app" },
       { value: "2", label: "Data pipelines" },
-      { value: "13", label: "Lab-data edge cases handled" },
-      { value: "PINN", label: "Quality predictions" },
+      { value: "13", label: "Types of spreadsheet problems handled" },
+      { value: "Flavour", label: "Quality predicted before production" },
     ],
     problem: [
       "Mashing is the first stage of the process: grain and hot water held at controlled temperatures. Small changes there show up later in the flavour of the product.",
@@ -301,7 +300,7 @@ export const CASE_STUDIES: CaseStudy[] = [
     ],
     ownership: [
       "I developed the first complete version of the app end to end (Electron shell, React UI, FastAPI backend and the data pipelines), then redesigned the UI and UX.",
-      "The PINN models that predict sensory quality come from AI4M's ML team; my pipelines prepare and feed the data they run on.",
+      "The physics-informed neural network (PINN) models that predict flavour quality come from AI4M's ML team; my pipelines prepare and feed the data they run on.",
     ],
     architecture: [
       {
@@ -345,7 +344,7 @@ export const CASE_STUDIES: CaseStudy[] = [
     ],
     results: [
       "Engineers load, validate and analyse batches in one desktop app instead of juggling Excel files.",
-      "Validation rules covering 13 lab-data edge cases.",
+      "Handles 13 kinds of spreadsheet problems, including missing readings and duplicate batches.",
       "The first version became the base the team built later features on.",
     ],
     stack: ["Electron", "React", "TypeScript", "Vite", "Tailwind CSS", "Radix UI", "Recharts", "FastAPI", "Python", "pandas", "PostgreSQL", "PINN (ONNX)"],

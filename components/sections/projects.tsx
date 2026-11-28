@@ -124,18 +124,18 @@ export default function Projects() {
     <Section id="projects">
       <SectionHeader
         index="03"
-        label="Work"
+        label="Projects"
         title={
           <>
             Selected <span className="serif-accent">work</span>.
           </>
         }
-        intro="Platforms running on real factory floors, plus side projects with live demos and full source code."
+        intro="Factory software I built for clients and personal projects you can explore."
         action={{ href: "/projects", label: "All projects" }}
       />
       <p className="hud-label mb-4 text-muted">Client case studies</p>
       <CaseStudyGrid studies={CASE_STUDIES} reveal />
-      <p className="hud-label mt-16 mb-4 text-muted">Side projects</p>
+      <p className="hud-label mt-16 mb-4 text-muted">Personal projects</p>
       <ProjectGrid projects={featured} reveal />
     </Section>
   );

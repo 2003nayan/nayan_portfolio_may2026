@@ -6,12 +6,10 @@ import { PROJECTS, CLIENT_PROJECTS } from "@/data/projects";
 export const metadata: Metadata = {
   title: "Projects",
   description:
-    "Production-grade projects with live demos and full source code.",
+    "Explore personal projects and factory software case studies.",
 };
 
 export default function ProjectsPage() {
-  const all = [...PROJECTS, ...CLIENT_PROJECTS];
-
   return (
     <>
       <PageHeader
@@ -21,10 +19,13 @@ export default function ProjectsPage() {
             All <span className="serif-accent">projects</span>.
           </>
         }
-        intro="Production-grade projects with live demos and full source code, plus client platforms built under NDA."
+        intro="Explore personal projects with source code and available demos, plus case studies about software I built for factory teams."
       />
       <div className={`${CONTAINER} py-16 md:py-24`}>
-        <ProjectGrid projects={all} />
+        <h2 className="hud-label mb-4 text-muted">Personal projects</h2>
+        <ProjectGrid projects={PROJECTS} />
+        <h2 className="hud-label mt-16 mb-4 text-muted">Client case studies</h2>
+        <ProjectGrid projects={CLIENT_PROJECTS} />
       </div>
     </>
   );

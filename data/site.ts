@@ -10,15 +10,14 @@ export const SITE = {
   avatarUrl: "/me.jpeg",
   email: "nayankatiyara03@gmail.com",
   description: "Full Stack Engineer",
-  tagline: "I build & own",
-  taglineAccent: "production systems",
+  tagline: "I build software for",
+  taglineAccent: "factory teams",
   shortBio:
-    "I'm Nayan Katiyara — Full Stack Engineer at AI4M Technology. I build shopfloor operations platforms and digital twins for global FMCG and spirits plants, delivered onsite at 4 factories in India and the Philippines.",
-  bio: `I'm a Full Stack Engineer from Pune. I joined AI4M Technology as a frontend intern in June 2024 and went full-time in September 2025; today I'm the only full-stack developer on two live plants of a Fortune Global 500 FMCG company. I was the only fresher sent onsite to one of its factories, and since then I've delivered for the same group in India and the Philippines, and for a global spirits maker.\n\nMy work runs on real factory floors: a shopfloor operations platform scaled from 10 to 36 machines that now runs with 6 operators instead of 18, a live 3D digital twin of a soap line, and real-time quality systems on high-speed packaging machines. React, TypeScript, FastAPI, PostgreSQL, WebSockets, PLC integration, CI/CD — every stack chosen for production, not portfolio points. CreatorsBrain and Collaborix are built the same way: ship fast, own it fully.`,
+    "I’m a full-stack engineer at AI4M Technology. I build applications that help factory teams monitor machines, catch problems, and run production. I’ve deployed software onsite at four factories in India and the Philippines.",
+  bio: `I'm a Full Stack Engineer from Pune. I joined AI4M Technology as a frontend intern in June 2024 and went full-time in September 2025; I’m the sole full-stack developer for the applications I work on at two plants for a Fortune Global 500 consumer goods company. I was the only new graduate selected for my first onsite rollout and have since built software for factories in India and the Philippines, including for a global spirits maker.\n\nMy work runs on real factory floors: a factory operations platform scaled from 10 to 36 machines that now runs with 6 operators instead of 18, a live 3D digital twin of a soap line, and real-time quality systems on high-speed packaging machines. I build the interfaces and backend services, then work with operators during rollout.`,
   careerStart:
     "I started breaking things on purpose at 17 — 11th grade, one laptop, and a head full of questions. The pandemic handed me my first machine for online classes; my uncle showed me how the web actually works under the hood, and I never looked back.",
   stats: {
-    months: "29+",
     projects: "10+",
     ossPrs: "7",
   },

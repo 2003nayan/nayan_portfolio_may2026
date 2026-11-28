@@ -19,9 +19,9 @@ const TWINS: {
     sizeMb: 16,
     motion: [
       { label: "Sealers", detail: "Vertical and horizontal jaws close on the film every cycle." },
-      { label: "Film feed", detail: "The web steps one sachet per stroke, in sync with the jaws." },
-      { label: "Filler pistons", detail: "Twelve pumps dose while the jaws are shut, refill while open." },
-      { label: "Output", detail: "Finished sachet mats fold and stack onto the conveyor." },
+      { label: "Film feed", detail: "The packaging film advances one sachet length each cycle." },
+      { label: "Filler pistons", detail: "Twelve pumps dispense product while the sealers are closed and refill when they open." },
+      { label: "Output", detail: "Connected sheets of finished sachets fold and stack on the conveyor." },
     ],
   },
   {
@@ -30,10 +30,10 @@ const TWINS: {
     sizeMb: 34,
     presets: SOAP_LINE_PRESETS,
     motion: [
-      { label: "Mixing", detail: "Sigma blades turn the batch; the gate opens to discharge and recharge." },
-      { label: "Milling", detail: "Noodler screws and counter-rotating mill rolls work the mass into flakes." },
-      { label: "Plodding", detail: "Twin screws compact it through the vacuum chamber into a continuous bar." },
-      { label: "Stamping", detail: "Billets are cut, stamped and lifted out; scrap rides the loop back." },
+      { label: "Mixing", detail: "Blades mix the batch. A gate opens to empty the mixer before the next batch." },
+      { label: "Milling", detail: "Screws feed the soap into rollers that press it into flakes." },
+      { label: "Pressing", detail: "Two screws push the soap through a vacuum chamber and press it into a continuous bar." },
+      { label: "Stamping", detail: "The machine cuts and stamps individual bars, then sends leftover soap back for reuse." },
     ],
   },
 ];
@@ -49,7 +49,7 @@ export default function Twins() {
             Machines, <span className="serif-accent">in motion</span>.
           </>
         }
-        intro="Digital twins I built for live production lines. Every stroke, turn and drop is driven in code against the real machine models, at their real running speeds. Click in to zoom and look around."
+        intro="Explore animated 3D demos of two machines. The models show how the equipment moves at its normal operating speed. Open a model to rotate it, zoom in, and see how it works."
       />
 
       <div className="space-y-16 md:space-y-24">

@@ -4,7 +4,7 @@
 export const HOME_SECTIONS = [
   { id: "about", label: "About" },
   { id: "journey", label: "Journey" },
-  { id: "projects", label: "Work" },
+  { id: "projects", label: "Projects" },
   { id: "twins", label: "3D Twins" },
   { id: "opensource", label: "Open Source" },
   { id: "writing", label: "Writing" },

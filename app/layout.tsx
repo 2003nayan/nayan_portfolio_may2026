@@ -49,8 +49,7 @@ export const metadata: Metadata = {
     default: `${SITE.name} — Full Stack Engineer`,
     template: `%s | ${SITE.name}`,
   },
-  description:
-    "Full Stack Engineer from Pune building shopfloor platforms and digital twins for global FMCG and spirits plants. React, TypeScript, FastAPI, PostgreSQL.",
+  description: SITE.shortBio,
   keywords: [
     "Nayan Katiyara",
     "Full Stack Developer",
@@ -68,15 +67,14 @@ export const metadata: Metadata = {
     locale: "en_IN",
     url: SITE.url,
     title: `${SITE.name} — Full Stack Engineer`,
-    description:
-      "Full Stack Engineer from Pune. Shopfloor platforms and digital twins for global FMCG and spirits manufacturers.",
+    description: SITE.shortBio,
     siteName: SITE.name,
     images: [{ url: "/og-image.png", width: 1200, height: 630, alt: SITE.name }],
   },
   twitter: {
     card: "summary_large_image",
     title: `${SITE.name} — Full Stack Engineer`,
-    description: "Full Stack Engineer. Shopfloor platforms and digital twins for global FMCG and spirits manufacturers.",
+    description: SITE.shortBio,
     creator: "@NayanKatiyara",
     images: ["/og-image.png"],
   },

@@ -9,7 +9,7 @@ import { SITE } from "@/data/site";
 
 const NAV_LINKS = [
   { label: "Journey", href: "#journey", page: null },
-  { label: "Work", href: "#projects", page: "/projects" },
+  { label: "Projects", href: "#projects", page: "/projects" },
   { label: "Open Source", href: "#opensource", page: "/open-source" },
   { label: "Writing", href: "#writing", page: "/blog" },
 ];
@@ -46,7 +46,7 @@ export default function Navbar() {
   const isActive = (link: (typeof NAV_LINKS)[number]) =>
     isHome
       ? activeSection === link.href
-      : link.page !== null && pathname.startsWith(link.page);
+      : link.page !== null && (pathname.startsWith(link.page) || (link.page === "/projects" && pathname.startsWith("/work")));
 
   return (
     <header className="sticky top-0 z-50 w-full border-b border-line bg-bg/90 backdrop-blur-md">

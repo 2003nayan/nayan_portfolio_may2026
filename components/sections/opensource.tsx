@@ -10,13 +10,14 @@ import {
 } from "@/data/opensource";
 
 export const OSS_INTRO =
-  "Real bug fixes and security improvements — not documentation typos. Active PRs open in Bruno and Supabase, 100K+ stars repos.";
+  "I’ve submitted fixes to Bruno and Supabase on GitHub. They prevent lost form data, protect credentials during redirects, and catch broken invitation settings.";
 
 export function OssStats() {
+  const openCount = OSS_CONTRIBUTIONS.filter((contribution) => contribution.status === "open").length;
   const stats = [
-    { value: OSS_STATS.stars, label: "Repository stars", sub: OSS_STATS.starsRepo },
-    { value: OSS_STATS.totalPrs, label: "Total PRs" },
-    { value: OSS_STATS.merged, label: "Open PRs" },
+    { value: OSS_STATS.stars, label: "Combined GitHub stars for Bruno and Supabase" },
+    { value: OSS_CONTRIBUTIONS.length, label: "Pull requests submitted" },
+    { value: openCount, label: "Open pull requests" },
   ];
 
   return (
@@ -26,9 +27,6 @@ export function OssStats() {
           key={s.label}
           className="flex flex-col-reverse justify-end border-r border-b border-line p-4 sm:p-6 md:p-8"
         >
-          {s.sub && (
-            <p className="hud-label mt-1 hidden text-faint sm:block">{s.sub}</p>
-          )}
           <dt className="hud-label mt-2 text-faint">{s.label}</dt>
           <dd className="font-display text-3xl font-medium tracking-tight text-ink-strong md:text-5xl">
             {s.value}
@@ -107,7 +105,7 @@ export default function OpenSource() {
           </>
         }
         intro={OSS_INTRO}
-        action={{ href: "/open-source", label: "All PRs" }}
+        action={{ href: "/open-source", label: "All contributions" }}
       />
       <Reveal>
         <OssStats />

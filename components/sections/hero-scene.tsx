@@ -12,20 +12,20 @@ import Image from "next/image";
 const CARDS = [
   // top band
   { src: "/hero/factory-robots.webp", label: "Factory floor", x: 6, y: 12, w: 200, depth: 0.55 }, // Simon Kadula
-  { src: "/creatorsbrain.png", label: "CreatorsBrain", x: 23, y: 9, w: 220, depth: 0.5 },
+  { src: "/creatorsbrain.png", label: "CreatorsBrain landing page", x: 23, y: 9, w: 220, depth: 0.5 },
   { src: "/hero/robot-arm-lab.webp", label: "Automation", x: 40, y: 8, w: 150, depth: 0.3 }, // Testalize.me
   { src: "/hero/silicon-wafer.webp", label: "Hardware", x: 57, y: 9, w: 130, depth: 0.25 }, // Laura Ockel
-  { src: "/hero/server-fans.webp", label: "On-prem servers", x: 74, y: 11, w: 220, depth: 0.6 }, // Winston Chen
+  { src: "/creatorsbrain-preview.png", label: "CreatorsBrain", x: 74, y: 11, w: 220, depth: 0.6 },
   { src: "/BayzCrypt.png", label: "BayzCrypt", x: 92, y: 9, w: 170, depth: 0.4 },
   { src: "/hero/server-rack.webp", label: "Infrastructure", x: 98, y: 30, w: 130, depth: 0.35 }, // Domaintechnik
   // left flank
-  { src: "/hero/code-monitor.webp", label: "Full stack", x: 11, y: 52, w: 230, depth: 0.85 }, // Harshit Katiyar
+  { src: "/collaborix-preview.png", label: "Collaborix", x: 11, y: 52, w: 230, depth: 0.85 },
   { src: "/hero/metrics-screen.webp", label: "Live metrics", x: 30, y: 60, w: 120, depth: 0.2 }, // Stephen Dawson
   { src: "/hero/circuit-board.webp", label: "PLC integration", x: 2, y: 74, w: 150, depth: 0.4 }, // Alexandre Debiève
   { src: "/motionui.png", label: "MotionUI", x: 19, y: 77, w: 250, depth: 0.95 },
   { src: "/hero/conveyor-line.webp", label: "Packaging line", x: 9, y: 95, w: 220, depth: 0.65 }, // Salvador Escalante
   // right flank
-  { src: "/collaborix-2.png", label: "Collaborix", x: 87, y: 52, w: 280, depth: 0.9 },
+  { src: "/documind.png", label: "DocuMind", x: 87, y: 52, w: 280, depth: 0.9 },
   { src: "/hero/analytics-laptop.webp", label: "Analytics", x: 70, y: 60, w: 125, depth: 0.2 }, // Luke Chesser
   { src: "/hero/robot-arm-line.webp", label: "Digital twins", x: 79, y: 79, w: 220, depth: 0.8 }, // Homa Appliances
   // bottom band

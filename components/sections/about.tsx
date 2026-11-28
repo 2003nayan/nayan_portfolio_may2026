@@ -6,18 +6,18 @@ import { SITE } from "@/data/site";
 const HIGHLIGHTS = [
   {
     value: "10 → 36",
-    label: "Machines scaled",
-    detail: "Only full-stack developer on a global FMCG shopfloor platform.",
+    label: "Machines covered by one platform",
+    detail: "Only full-stack developer on a factory operations platform for a global consumer goods company.",
   },
   {
     value: "4",
-    label: "Client platforms",
-    detail: "For global FMCG and spirits clients, across India and the Philippines.",
+    label: "Client case studies",
+    detail: "Factory software projects featured in this portfolio.",
   },
   {
     value: "2h → 15m",
-    label: "Deploy time",
-    detail: "Cut through an in-house CI/CD pipeline built from scratch.",
+    label: "Time to roll out updates",
+    detail: "I automated how software updates reach the factory floor.",
   },
 ];
 
@@ -53,7 +53,7 @@ export default function About() {
             ))}
           </div>
           <figure className="border-l border-accent pl-6 md:col-span-5">
-            <figcaption className="hud-label text-faint">Origin</figcaption>
+            <figcaption className="hud-label text-faint">How I got started</figcaption>
             <blockquote className="mt-4 font-serif text-2xl leading-snug text-ink md:text-[1.75rem]">
               “{SITE.careerStart}”
             </blockquote>
